@@ -15,7 +15,7 @@
         android:singleLine="true"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:theme="@style/SerifTheme" />
 

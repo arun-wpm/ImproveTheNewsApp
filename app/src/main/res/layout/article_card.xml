@@ -11,8 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8sp">
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/article_image"
@@ -24,6 +23,8 @@
             android:id="@+id/article_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:text="TextView"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -33,6 +34,8 @@
             android:id="@+id/article_source"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:text="TextView"
             tools:text="@tools:sample/full_names" />
 
@@ -40,6 +43,9 @@
             android:id="@+id/article_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"
             android:text="TextView"
             tools:text="@tools:sample/date/mmddyy" />
 

@@ -3,6 +3,7 @@ package com.improvethenews.projecta;
 import android.content.Context;
 import android.media.Rating;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -67,6 +68,9 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_actionbar);
 
         final Date loadTime = Calendar.getInstance().getTime();
         final RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
