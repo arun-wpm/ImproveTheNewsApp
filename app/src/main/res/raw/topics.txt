@@ -1,0 +1,935 @@
+news	1	News	news	0	1	aa
+world	1	World	world	1	0.59833	Aa
+americas	1	Americas	Americas	2	0.11258	Ab
+north_america	1	North America	North America	3	0.05492	Ac
+CAN	1	Canada	Canada	4	0.02695	Ad
+USA	1	United States of America	United States of America	4	0.00424	Ae
+MEX	1	Mexico	Mexico	4	0.02777	Af
+central_america	1	Central America	Central America	3	0.01158	Ag
+HND	1	Honduras	Honduras	4	0.00274	Ah
+GTM	1	Guatemala	Guatemala	4	0.00397	Ai
+BLZ	1	Belize	Belize	4	0.00043	Aj
+SLV	1	El Salvador	El Salvador	4	0.00334	Ak
+CRI	1	Costa Rica	Costa Rica	4	0.00125	Al
+NIC	1	Nicaragua	Nicaragua	4	0.00242	Am
+PAN	1	Panama	Panama	4	0.00251	An
+caribbean	1	Caribbean	Caribbean	3	0.02547	Ao
+BLM	0	St-Barthelemy	St-Barthelemy	4	0	Ap
+MAF	0	Collectivity of St-Martin	Collectivity of St-Martin	4	0	Aq
+SPM	0	St. Pierre and Miquelon	St. Pierre and Miquelon	4	0	Ar
+TCA	0	Turks and Caicos Islands	Turks and Caicos Islands	4	0	As
+SXM	0	Sint Maarten	Sint Maarten	4	0	At
+ABW	1	Aruba	Aruba	4	0.00017	Au
+BHS	1	Bahamas	Bahamas	4	0.00121	Av
+BRB	1	Barbados	Barbados	4	0.00058	Aw
+BMU	1	Bermuda	Bermuda	4	0.00055	Ax
+CUB	1	Cuba	Cuba	4	0.01313	Ay
+DMA	1	Dominica	Dominica	4	0.002	Az
+DOM	1	Dominican Republic	Dominican Republic	4	0.00124	Ba
+GRD	1	Grenada	Grenada	4	0.00037	Bb
+HTI	1	Haiti	Haiti	4	0.00292	Bc
+JAM	1	Jamaica	Jamaica	4	0.00252	Bd
+PRI	1	Puerto Rico	Puerto Rico	4	0.00472	Be
+LCA	1	Saint Lucia	Saint Lucia	4	0.00006	Bf
+VCT	1	Saint Vincent and the Grenadines	Saint Vincent and the Grenadines	4	0.00006	Bg
+KNA	1	St. Kitts and Nevis	St. Kitts and Nevis	4	0.00004	Bh
+TTO	1	Trinidad and Tobago	Trinidad and Tobago	4	0.00035	Bi
+ATG	1	Antigua and Barbuda	Antigua and Barbuda	4	0.00002	Bj
+VIR	1	US Virgin Islands	US Virgin Islands	4	0.00017	Bk
+CUW	1	Curacao	Curacao	4	0.00005	Bl
+AIA	0	Anguilla	Anguilla	4	0	Bm
+IOT	0	British Indian Ocean Territory	British Indian Ocean Territory	4	0	Bn
+VGB	0	British Virgin Islands	British Virgin Islands	4	0	Bo
+CYM	0	Cayman Islands	Cayman Islands	4	0	Bp
+MSR	0	Montserrat	Montserrat	4	0	Bq
+south_america	1	South America	South America	3	0.04444	Br
+ARG	1	Argentina	Argentina	4	0.00598	Bs
+BOL	1	Bolivia	Bolivia	4	0.00212	Bt
+BRA	1	Brazil	Brazil	4	0.0182	Bu
+CHL	1	Chile	Chile	4	0.00612	Bv
+COL	1	Colombia	Colombia	4	0.00641	Bw
+ECU	1	Ecuador	Ecuador	4	0.00482	Bx
+GUY	1	Guyana	Guyana	4	0.00047	By
+PRY	1	Paraguay	Paraguay	4	0.00111	Bz
+PER	1	Peru	Peru	4	0.00532	Ca
+SUR	1	Suriname	Suriname	4	0.00023	Cb
+URY	1	Uruguay	Uruguay	4	0.00143	Cc
+VEN	1	Venezuela	Venezuela	4	0.01082	Cd
+FLK	0	Falkland Islands	Falkland Islands	4	0	Ce
+SGS	0	South Georgia and the South Sandwich Islands	South Georgia and the South Sandwich Islands	4	0	Cf
+europe	1	Europe	Europe	2	0.23807	Cg
+northern_europe	1	Northern Europe	Northern Europe	3	0.02329	Ch
+DNK	1	Denmark	Denmark	4	0.00713	Ci
+GRL	1	Greenland	Greenland	4	0.00124	Cj
+FRO	1	Faeroe Islands	Faeroe Islands	4	0.00002	Ck
+FIN	1	Finland	Finland	4	0.00378	Cl
+ALA	0	�land	�land	4	0	Cm
+ISL	1	Iceland	Iceland	4	0.00337	Cn
+NOR	1	Norway	Norway	4	0.00638	Co
+SWE	1	Sweden	Sweden	4	0.00954	Cp
+western_europe	1	Western Europe	Western Europe	3	0.14204	Cq
+GBR	1	United Kingdom	United Kingdom	4	0.01526	Cr
+GGY	1	Guernsey	Guernsey	4	0.00004	Cs
+IMN	1	Isle of Man	Isle of Man	4	0.00018	Ct
+JEY	1	Jersey	Jersey	4	0.03375	Cu
+AND	1	Andorra	Andorra	4	0.00022	Cv
+AUT	1	Austria	Austria	4	0.00854	Cw
+BEL	1	Belgium	Belgium	4	0.00755	Cx
+FRA	1	France	France	4	0.05138	Cy
+DEU	1	Germany	Germany	4	0.04359	Cz
+IRL	1	Ireland	Ireland	4	0.00979	Da
+LIE	1	Liechtenstein	Liechtenstein	4	0.0003	Db
+LUX	1	Luxembourg	Luxembourg	4	0.00105	Dc
+MCO	1	Monaco	Monaco	4	0.00112	Dd
+NLD	1	Netherlands	Netherlands	4	0.00904	De
+CHE	1	Switzerland	Switzerland	4	0.00772	Df
+eastern_europe	1	Eastern Europe	Eastern Europe	3	0.07409	Dg
+BLR	1	Belarus	Belarus	4	0.00198	Dh
+CZE	1	Czechia	Czechia	4	0.00009	Di
+EST	1	Estonia	Estonia	4	0.00098	Dj
+HUN	1	Hungary	Hungary	4	0.00453	Dk
+LVA	1	Latvia	Latvia	4	0.00078	Dl
+LTU	1	Lithuania	Lithuania	4	0.00107	Dm
+MDA	1	Moldova	Moldova	4	0.0004	Dn
+POL	1	Poland	Poland	4	0.00599	Do
+ROU	1	Romania	Romania	4	0.00211	Dp
+RUS	1	Russia	Russia	4	0.0596	Dq
+UKR	1	Ukraine	Ukraine	4	0.01128	Dr
+balkans	1	Balkans	Balkans	3	0.00822	Ds
+ALB	1	Albania	Albania	4	0.00093	Dt
+BIH	1	Bosnia and Herzegovina	Bosnia and Herzegovina	4	0.00002	Du
+BGR	1	Bulgaria	Bulgaria	4	0.00174	Dv
+HRV	1	Croatia	Croatia	4	0.00143	Dw
+XKX	1	Kosovo	Kosovo	4	0.00079	Dx
+MKD	1	Macedonia	Macedonia	4	0.00079	Dy
+MNE	1	Montenegro	Montenegro	4	0.00049	Dz
+SRB	1	Serbia	Serbia	4	0.00251	Ea
+SVK	1	Slovakia	Slovakia	4	0.00195	Eb
+SVN	1	Slovenia	Slovenia	4	0.00074	Ec
+southern_europe	1	Southern Europe	Southern Europe	3	0.06813	Ed
+GRC	1	Greece	Greece	4	0.00657	Ee
+ITA	1	Italy	Italy	4	0.05027	Ef
+MLT	1	Malta	Malta	4	0.00087	Eg
+CYP	1	North Cyprus	North Cyprus	4	0.00002	Eh
+PRT	1	Portugal	Portugal	4	0.00427	Ei
+SMR	1	San Marino	San Marino	4	0.00016	Ej
+ESP	1	Spain	Spain	4	0.03061	Ek
+VAT	1	Vatican	Vatican	4	0.00317	El
+asia	1	Asia	Asia	2	0.40794	Em
+middle_east	1	Middle East	Middle East	3	0.21539	En
+BHR	1	Bahrain	Bahrain	4	0.00156	Eo
+IRN	1	Iran	Iran	4	0.03493	Ep
+IRQ	1	Iraq	Iraq	4	0.0197	Eq
+ISR	1	Israel	Israel	4	0.0204	Er
+JOR	1	Jordan	Jordan	4	0.01619	Es
+KWT	1	Kuwait	Kuwait	4	0.00227	Et
+LBN	1	Lebanon	Lebanon	4	0.00408	Eu
+PSE	1	Palestine	Palestine	4	0.00264	Ev
+QAT	1	Qatar	Qatar	4	0.00356	Ew
+OMN	1	Oman	Oman	4	0.13159	Ex
+SAU	1	Saudi Arabia	Saudi Arabia	4	0.01538	Ey
+SYR	1	Syria	Syria	4	0.01132	Ez
+TUR	1	Turkey	Turkey	4	0.01129	Fa
+ARE	1	United Arab Emirates	United Arab Emirates	4	0.00427	Fb
+YEM	1	Yemen	Yemen	4	0.0061	Fc
+caucasus	1	Caucasus	Caucasus	3	0.03887	Fd
+ARM	1	Armenia	Armenia	4	0.00098	Fe
+AZE	1	Azerbaijan	Azerbaijan	4	0.00067	Ff
+GEO	1	Georgia	Georgia	4	0.03768	Fg
+central_asia	1	Central Asia	Central Asia	3	0.00293	Fh
+KAZ	1	Kazakhstan	Kazakhstan	4	0.00144	Fi
+KGZ	1	Kyrgyzstan	Kyrgyzstan	4	0.00047	Fj
+TJK	1	Tajikistan	Tajikistan	4	0.00058	Fk
+TKM	1	Turkmenistan	Turkmenistan	4	0.00066	Fl
+UZB	1	Uzbekistan	Uzbekistan	4	0.00055	Fm
+east_asia	1	East Asia	East Asia	3	0.1762	Fn
+CHN	1	China	China	4	0.14267	Fo
+HKG	0	Hong Kong	Hong Kong	4	0	Fp
+MAC	0	Macao	Macao	4	0	Fq
+TWN	1	Taiwan	Taiwan	4	0.01224	Fr
+JPN	1	Japan	Japan	4	0.03253	Fs
+PRK	1	North Korea	North Korea	4	0.0089	Ft
+KOR	1	South Korea	South Korea	4	0.02727	Fu
+MNG	1	Mongolia	Mongolia	4	0.00097	Fv
+south_asia	1	South Asia	South Asia	3	0.06985	Fw
+AFG	1	Afghanistan	Afghanistan	4	0.01202	Fx
+BGD	1	Bangladesh	Bangladesh	4	0.00405	Fy
+BTN	1	Bhutan	Bhutan	4	0.00052	Fz
+IND	1	India	India	4	0.05194	Ga
+sia	1	Siachen Glacier	Siachen Glacier	4	0.00002	Gb
+MDV	1	Maldives	Maldives	4	0.00067	Gc
+MMR	1	Myanmar	Myanmar	4	0.00241	Gd
+NPL	1	Nepal	Nepal	4	0.00197	Ge
+PAK	1	Pakistan	Pakistan	4	0.00818	Gf
+LKA	1	Sri Lanka	Sri Lanka	4	0.00226	Gg
+southeast_asia	1	Southeast Asia	Southeast Asia	3	0.04274	Gh
+KHM	1	Cambodia	Cambodia	4	0.00274	Gi
+IDN	1	Indonesia	Indonesia	4	0.0066	Gj
+LAO	1	Laos	Laos	4	0.00093	Gk
+MYS	1	Malaysia	Malaysia	4	0.00431	Gl
+BRN	1	Brunei	Brunei	4	0.00043	Gm
+PHL	1	Philippines	Philippines	4	0.00604	Gn
+SGP	1	Singapore	Singapore	4	0.01298	Go
+THA	1	Thailand	Thailand	4	0.0059	Gp
+TLS	1	Timor-Leste	Timor-Leste	4	0.00008	Gq
+VNM	1	Vietnam	Vietnam	4	0.01584	Gr
+africa	1	Africa	Africa	2	0.09405	Gs
+north_africa	1	North Africa	North Africa	3	0.01813	Gt
+DZA	1	Algeria	Algeria	4	0.00194	Gu
+EGY	1	Egypt	Egypt	4	0.00934	Gv
+LBY	1	Libya	Libya	4	0.00453	Gw
+MAR	1	Morocco	Morocco	4	0.00214	Gx
+SSD	1	South Sudan	South Sudan	4	0.00118	Gy
+SDN	1	Sudan	Sudan	4	0.00358	Gz
+TUN	1	Tunisia	Tunisia	4	0.00177	Ha
+ESH	0	W. Sahara	W. Sahara	4	0	Hb
+west_africa	1	West Africa	West Africa	3	0.05381	Hc
+BEN	1	Benin	Benin	4	0.00075	Hd
+BFA	1	Burkina Faso	Burkina Faso	4	0.00112	He
+CIV	1	Cote d'Ivoire	Cote d'Ivoire	4	0.00004	Hf
+CPV	1	Cabo Verde	Cabo Verde	4	0.00003	Hg
+GMB	1	Gambia	Gambia	4	0.00062	Hh
+GHA	1	Ghana	Ghana	4	0.00267	Hi
+GIN	1	Guinea	Guinea	4	0.00336	Hj
+GNB	1	Guinea-Bissau	Guinea-Bissau	4	0.00027	Hk
+LBR	1	Liberia	Liberia	4	0.00161	Hl
+MLI	1	Mali	Mali	4	0.03889	Hm
+MRT	1	Mauritania	Mauritania	4	0.00042	Hn
+NER	1	Niger	Niger	4	0.00866	Ho
+NGA	1	Nigeria	Nigeria	4	0.00674	Hp
+SHN	0	Saint Helena	Saint Helena	4	0	Hq
+SEN	1	Senegal	Senegal	4	0.00193	Hr
+SLE	1	Sierra Leone	Sierra Leone	4	0.00143	Hs
+TGO	1	Togo	Togo	4	0.00063	Ht
+central_africa	1	Central Africa	Central Africa	3	0.01559	Hu
+AGO	1	Angola	Angola	4	0.00118	Hv
+CMR	1	Cameroon	Cameroon	4	0.00148	Hw
+CAF	1	Central African Republic	Central African Republic	4	0.00064	Hx
+TCD	1	Chad	Chad	4	0.0092	Hy
+COG	1	Congo	Congo	4	0.00412	Hz
+COD	1	Democratic Republic of Congo	Democratic Republic of Congo	4	0.00134	Ia
+GNQ	1	Equatorial Guinea	Equatorial Guinea	4	0.00022	Ib
+GAB	1	Gabon	Gabon	4	0.00055	Ic
+STP	1	Sao Tome and Principe	Sao Tome and Principe	4	0.00008	Id
+east_africa	1	East Africa	East Africa	3	0.01548	Ie
+BDI	1	Burundi	Burundi	4	0.00064	If
+COM	1	Comoros	Comoros	4	0.00022	Ig
+DJI	1	Djibouti	Djibouti	4	0.00074	Ih
+ERI	1	Eritrea	Eritrea	4	0.0006	Ii
+ETH	1	Ethiopia	Ethiopia	4	0.00472	Ij
+KEN	1	Kenya	Kenya	4	0.00599	Ik
+MUS	1	Mauritius	Mauritius	4	0.0004	Il
+RWA	1	Rwanda	Rwanda	4	0.00168	Im
+SYC	1	Seychelles	Seychelles	4	0.0003	In
+SOM	1	Somalia	Somalia	4	0.00271	Io
+sml	0	Somaliland	Somaliland	4	0	Ip
+TZA	1	Tanzania	Tanzania	4	0.00158	Iq
+UGA	1	Uganda	Uganda	4	0.00268	Ir
+southern_africa	1	Southern Africa	Southern Africa	3	0.01473	Is
+MDG	1	Madagascar	Madagascar	4	0.00095	It
+MWI	1	Malawi	Malawi	4	0.0006	Iu
+MOZ	1	Mozambique	Mozambique	4	0.00089	Iv
+ZMB	1	Zambia	Zambia	4	0.00077	Iw
+ZWE	1	Zimbabwe	Zimbabwe	4	0.0022	Ix
+BWA	1	Botswana	Botswana	4	0.00049	Iy
+SWZ	1	Eswatini	Eswatini	4	0.00008	Iz
+LSO	1	Lesotho	Lesotho	4	0.00048	Ja
+NAM	1	Namibia	Namibia	4	0.0006	Jb
+ZAF	1	South Africa	South Africa	4	0.01084	Jc
+ATF	0	French Southern Territories	French Southern Territories	4	0	Jd
+oceania	1	Oceania	Oceania	2	0.0457	Je
+AUS	1	Australia	Australia	3	0.03331	Jf
+NZL	1	New Zealand	New Zealand	3	0.01155	Jg
+ANT	1	Antarctica	Antarctica	3	0.00152	Jh
+micronesia	1	Micronesia	Micronesia	3	0.00449	Ji
+FSM	1	Federated States of Micronesia	Federated States of Micronesia	4	0.00002	Jj
+MHL	1	Marshall Islands	Marshall Islands	4	0.00017	Jk
+GUM	1	Guam	Guam	4	0.00398	Jl
+KIR	1	Kiribati	Kiribati	4	0.00013	Jm
+NRU	1	Nauru	Nauru	4	0.00014	Jn
+PLW	1	Palau	Palau	4	0.00027	Jo
+MNP	0	North Mariana Islands	North Mariana Islands	4	0	Jp
+melanesia	1	Melanesia	Melanesia	3	0.00132	Jq
+FJI	1	Fiji	Fiji	4	0.00075	Jr
+PNG	1	Papua New Guinea	Papua New Guinea	4	0.00036	Js
+SLB	1	Solomon Islands	Solomon Islands	4	0.00032	Jt
+NCL	1	New Caledonia	New Caledonia	4	0.00007	Ju
+VUT	1	Vanuatu	Vanuatu	4	0.0005	Jv
+HMD	0	Heard Islands & McDonald Island	Heard Islands & McDonald Island	4	0	Jw
+iot	0	Australian Indian Ocean Territory	Australian Indian Ocean Territory	4	0	Jx
+aci	0	Ashmore and Cartier Islands	Ashmore and Cartier Islands	4	0	Jy
+polynesia	1	Polynesia	Polyesia	3	0.00116	Jz
+WSM	1	Samoa	Samoa	4	0.00069	Ka
+ASM	0	American Samoa	American Samoa	4	0	Kb
+TON	1	Tonga	Tonga	4	0.00048	Kc
+PYF	1	French Polynesia	French Polynesia	4	0.00009	Kd
+PCN	0	Pitcairn Islands	Pitcairn Islands	4	0	Ke
+WLF	0	Wallis and Futuna Islands	Wallis and Futuna Islands	4	0	Kf
+COK	0	Cook Islands	Cook Islands	4	0	Kg
+NIU	0	Niue	Niue	4	0	Kh
+NFK	0	Norfolk Island	Norfolk Island	4	0	Ki
+crime_justice	1	Crime & justice	crime & justice	1	0.12958	ab
+crime	1	Crime	Crime	2	0.03846	ac
+violent_crime	1	Violent crime	Crime	3	0.02399	ad
+murders	1	Murders and attempted murders	Murders & attempts	4	0.0102	ae
+serial_murders	0	Serial murders	Serial murders	5	0	af
+assassinations	0	Assassinations and attempted assassinations	Assasinations & attempts	5	0	ag
+shootings	0	Shootings	Shootings	5	0	ah
+torture	1	Torture	Torture	4	0.00025	ai
+sex_crimes	1	Sex crimes	Sex crimes	4	0.00406	aj
+war_crimes	1	War crimes	war crimes	4	0.00006	ak
+genocide	0	Genocide	genocide	6	0	wx
+nazi_policies	0	Nazi policies toward jews and minorities	nazi policies toward jews and minorities	6	0	wy
+domestic_violence	1	Domestic violence	Domestic violence	4	0.00097	al
+child_abuse_neglect	1	Child abuse & neglect	Child abuse & neglect	4	0.00108	am
+child_abuse	0	Child abuse	child abuse	5	0	an
+violence	1	Violence & assaults	violence	4	0.00197	ao
+assaults	0	Assaults	assaults	5	0	ap
+kidnapping	1	Kidnapping & hostages	kidnapping	4	0.00043	aq
+missing_persons	0	Missing persons	missing persons	5	0	ar
+hostages	0	Hostages	hostages	5	0	as
+terrorism	1	Terrorism	terrorism	4	0.00679	at
+hijacking	1	Hijacking	hijacking	4	0.00044	au
+bombs	1	Bombs	bombs	4	0.00053	av
+bomb_plots	0	Bombs and bomb plots	bombs and bomb plots	5	0	aw
+explosions	0	Explosions	explosions	4	0	ax
+arson	1	Arson	arson	4	0.00015	ay
+vice_crime	1	Vice crime	vice crime	3	0.0028	az
+prostitution	1	Prostitution	prostitution	4	0.00018	ba
+child_porn	1	Child pornography	child pornography	4	0.00082	bb
+drugs	1	Drug abuse & traffic	drug abuse and traffic	4	0.00174	bc
+drug_traffic	0	Drug traffic	drug traffic	5	0	bd
+cocaine	1	Cocaine	cocaine and crack cocaine	5	0.00012	be
+marijuana	1	Marijuana	marijuana	5	0.00026	bf
+drunk_driving	1	Drunken & reckless driving	drunken and reckless driving	4	0.00007	bg
+organized_crime	1	Organized crime	organized crime	3	0.0003	bh
+racketeering	1	Racketeering	racketeering and racketeers	4	0.00002	bi
+threats	1	Threats and threatening messages	threats and threatening messages	4	0.00002	bj
+smuggling	1	Smuggling	smuggling	4	0.00017	bk
+white_collar_crime	1	White-collar crime	white-collar crime	3	0.0043	bl
+fraud	1	Fraud and swindling	frauds and swindling	4	0.00287	bm
+embezzlement	1	Embezzlement	embezzlement	4	0.00006	bn
+securities_violations	1	Securities & commodities violations	securities and commodities violations	4	0.00006	bo
+cybercrime	1	Cybercrime	cybercrime	4	0.00057	bp
+tax_evasion	1	Tax evasion	tax evasion	4	0.00005	bq
+bribery	1	Bribery	bribery	4	0.00068	br
+perjury	1	Perjury	perjury	4	0.00028	bs
+whitewater	0	Whitewater case	whitewater case	4	0	bt
+robberies_thefts	1	Robberies and thefts	robberies and thefts	3	0.00068	bu
+sexual_harrassment	1	Sexual harassment	sexual harassment	3	0.00295	bv
+legal_system	1	Legal system	legal system	2	0.0477	bw
+police	1	Police	police	3	0.01986	bx
+police_brutality	1	Police brutality and misconduct	police brutality and misconduct	4	0.00283	by
+attacks_on_police	1	Attacks on police	attacks on police	4	0.00025	bz
+citizenship	0	Citizenship	citizenship	3	0	ca
+illegal_aliens	1	Illegal aliens	illegal aliens	3	0.00581	cb
+border_wall	1	Border wall	border wall	4	0.00213	cc
+path_to_citizenship	1	Path to citizenship	path to citizenship	4	0.00018	cd
+deportation	1	Deportation	deportation	4	0.00067	ce
+sanctuary_cities	1	Sanctuary cities	sanctuary cities	4	0.00056	cf
+courts	1	Court system	courts	3	0.0016	cg
+legal_profession	0	Legal profession	legal profession	4	0	ch
+attorneys_general	0	Attorneys general	attorneys general	4	0	ci
+judges	0	Judges	judges	4	0	cj
+guards	0	Guards	guards	4	0	ck
+jury system	0	Jury system	jury system	4	0	cl
+lawsuits	1	Lawsuits	suits and litigation	3	0.00831	cm
+suits_against_govt	0	Suits and claims against government	suits and claims against government	4	0	cn
+arbitration	0	"Arbitration, conciliation and mediation"	"arbitration, conciliation and mediation"	4	0	co
+verdicts	1	Verdicts & sentences	decisions and verdicts	3	0.00483	cp
+fines	0	Fines & penalties	fines & penalties	4	0	cq
+sentences	0	Sentences	sentences	4	0	cr
+probation	0	Probation & parole	probation and parole	4	0	cs
+trials	0	Trials	trials	4	0	ct
+prisons	1	Prisons and prisoners	prisons and prisoners	3	0.00876	cu
+prison_reform	1	Prison reform	prison reform	4	0.00052	cv
+private_prisons	1	Private prisons	private prisons	4	0.00033	cw
+extradition	1	Extradition	extradition	3	0.00029	cx
+political_asylum	1	Political asylum	political asylum	3	0.00094	cy
+law_legislation	1	Legislation	legislation	2	0.01399	cz
+copyrights	1	Copyrights	copyrights	3	0.00057	da
+disclosure	1	Information disclosure	disclosure of information	3	0.00002	db
+liability	1	Product liability	product liability	3	0.00002	dc
+antitrust	1	Antitrust actions & laws	antitrust actions & laws	3	0.00071	dd
+civil_liberties	1	Civil liberties	civil liberties	2	0.03507	de
+human_rights	1	Freedom & human rights	freedom and human rights	3	0.00421	df
+freedom_of_speech	1	Freedom of speech & expression	freedom of speech & expression	3	0.00791	dg
+political_prisoners	1	Political prisoners	political prisoners	4	0.00038	dh
+whistleblowers	1	Whistleblowers	whistleblowers	4	0.00317	di
+snowden	1	Snowden case	Snowden case	7	0.00002	dj
+manning	1	Manning case	Manning case	6	0.00002	dk
+hate_speech	1	Hate speech	hate speech	4	0.00233	dl
+safe_spaces	1	Safe spaces	safe spaces	4	0.00053	dm
+freedom_of_press	1	Freedom of press	freedom of press	3	0.00069	dn
+assange	1	Assange case	gdpr	5	0.00006	do
+censorship	1	Censorship	censorship	3	0.00072	dp
+privacy	1	Privacy	privacy	3	0.00545	dq
+gdpr	0	GDPR	gdpr	4	0	dr
+search_seizure	0	Search & seizure	Search & seizure	4	0	ds
+surveillance	0	Surveillance	surveillance	4	0	dt
+ethics	1	Ethics	ethics	3	0.00761	du
+church_state	1	Church-state relations	church-state relations	3	0.00075	dv
+capital_punishment	1	Capital punishment	capital punishment	3	0.00048	dw
+gun_control	1	Gun control	gun control	3	0.00128	dx
+governance	1	Governance	governance	2	0.01673	dy
+constitutions	1	Constitutions	constitutions	3	0.00029	dz
+electoral_systems	1	Electoral systems	electoral systems	3	0.00589	ea
+gerrymandering	1	Gerrymandering	gerrymandering	4	0.00142	eb
+term_limits	1	Term limits	term limits	4	0.00037	ec
+ranked_choice_voting	1	Ranked choice voting	ranked choice voting	4	0.00017	ed
+open_primaries	1	Open primaries	open primaries	4	0.00002	ee
+public_election_funding	1	Public election funding	public election funding	4	0.00002	ef
+electoral_college	1	Electoral college	electoral college	4	0.0037	eg
+voter_id	1	Voter ID requirement	voter ID requirement	4	0.00027	eh
+mandatory_voting	1	Mandatory voting	mandatory voting	4	0.00003	ei
+online_voting	1	Online voting	online voting	4	0.0003	ej
+lobbying	1	Lobbying and lobbyists	lobbying and lobbyists	3	0.00162	ek
+revolving_door	1	Revolving door	revolving door	4	0.00091	el
+campaign_finance	1	Campaign finance reform	campaign finance reform	4	0.00017	em
+social_issues	1	Social issues	social issues	1	0.12515	en
+minorities	1	Minorities	minorities	2	0.02695	eo
+minorities_err	0	"Minorities (ethnic, racial, religious)"	"minorities (ethnic, racial, religious)"	3	0	ep
+african_americans	1	African-Americans	African-Americans	3	0.02327	eq
+african_americans_us	0	Blacks (in us)	blacks (in us)	4	0	er
+latinos	1	Latinos	Latinos	3	0.00056	es
+asian_americans	1	Asian-Americans	Asian-Americans	3	0.00002	et
+native_americans	1	Native Americans	Native Americans	3	0.00104	eu
+race	1	Race	race	3	0.00061	ev
+racial_relations	0	Racial relations	racial relations	4	0	ew
+affirmative_action	1	Affirmative action	affirmative action	3	0.00007	ex
+discrimination	1	Discrimination	discrimination	3	0.00264	ey
+equal_opportunity	0	Equal educational opportunities	equal educational opportunities	4	0	ez
+religion	1	Religion	religion	2	0.0128	fa
+christianity	1	Christianity	Christianity	3	0.00322	fb
+priests	0	Priests	priests	3	0	fc
+judaism	1	Judaism	Judaism	3	0.00205	fd
+antisemitism	0	Anti-semitism	anti-semitism	3	0	fe
+islam	1	Islam	Islam	3	0.00218	ff
+hinduism	1	Hinduism	Hinduism	3	0.00023	fg
+buddhism	1	Buddhism	Buddhism	3	0.00054	fh
+other_religions	1	Other religions	other religions	3	0.00017	fi
+non_religion	1	Non-religion	non-religion	3	0.00002	fj
+family	1	Family	family	2	0.02037	fk
+family_life	1	Family life	families and family life	3	0.00083	fl
+childcare	1	Child care	child care	3	0.00022	fm
+fostercare	1	Foster care	foster care	3	0.00005	fn
+babies	1	Babies	babies	3	0.00028	fo
+kids	1	Children and youth	children and youth	3	0.01088	fp
+marriage	1	Marriage	marriage	3	0.00069	fq
+divorce	1	Divorce	"divorce, separations and annulments"	3	0.00038	fr
+custody	0	Child custody & support	child custody and support	4	0	fs
+men	1	Men	men	3	0.00063	ft
+women	1	Women	women	3	0.00565	fu
+seniors	1	Seniors	seniors	3	0.00163	fv
+retirement	0	Retirement	retirement	4	0	fw
+retirement_plans	1	Retirement plans	retirement plans	3	0.00035	fx
+social_security	0	Social security	social security	3	0	fy
+sex	1	Sex	sex	2	0.00594	fz
+birth_control	1	Birth control	birth control	3	0.00048	ga
+abortion	1	Abortion	abortion	3	0.00294	gb
+lgbt	1	LGBT	LGBT	3	0.00136	gc
+porn	1	Pornography & obscenity	pornography and obscenity	3	0.00053	gd
+immigration	1	Immigration & refugees	immigration & refugees	2	0.01016	ge
+immigration_emigration	0	Immigration and emigration	immigration and emigration	3	0	gf
+refugees	0	Refugees and expatriates	refugees and expatriates	3	0	gg
+social_conditions	1	Social conditions & trends	social conditions and trends	2	0.05588	gh
+welfare	1	Welfare	welfare	3	0.00026	gi
+labor	1	Labor	labor	3	0.04355	gj
+unemployment	1	Unemployment	unemployment	3	0.0115	gk
+unemployment_ job_market	0	Unemployment & job market	unemployment & job market	4	0	gl
+layoffs	0	Layoffs	layoffs	4	0	gm
+layoffs2	0	Layoffs and job reductions	layoffs and job reductions	4	0	gn
+veterans	1	Veterans	veterans	3	0.00051	go
+disabilities	1	Disabilities	disabilities	3	0.00046	gp
+housing	1	Housing	housing	3	0.00447	gq
+homeless persons	1	Homelessness	homelessness	3	0.00146	gr
+drug_abuse	1	Drug abuse	drug abuse	3	0.00002	gs
+bullying	1	Bullying	bullying	3	0.00493	gt
+cyberbullying	1	Cyberbullying	cyberbullying	3	0.00027	gu
+sci_tech	1	Science & technology	science & technology	1	0.16635	gv
+computers_internet	1	Computers & internet	computers & internet	2	0.03351	gw
+hardware	1	Hardware	hardware	3	0.00054	gx
+personal_computers	0	Personal computers	personal computers	4	0	gy
+computer_chips	0	Computer chips	computer chips	4	0	gz
+electronics	0	Electronics	electronics	4	0	ha
+id_devices	0	Identification devices	identification devices	4	0	hb
+software	1	Software	software	3	0.00177	hc
+software_products	1	Software products	software products	4	0.00002	hd
+data_processing	0	Data processing	data processing	4	0	he
+email	0	Email	email	4	0	hf
+computer_games	1	Games	games	3	0.00348	hg
+cybersecurity	1	Computer security	computer security	3	0.00032	hh
+telco	1	Communication	communication	2	0.00337	hi
+mobile_phones	0	Mobile phones	mobile phones	3	0	hj
+satellites	0	Satellites	satellites	3	0	hk
+transportation	1	Transportation	transportation	2	0.02473	hl
+air_travel	1	Air travel	air travel	3	0.0103	hm
+airlines_planes	0	Airlines and airplanes	airlines and airplanes	4	0	hn
+airports	0	Airports	airports	4	0	ho
+pilots	0	Pilots	pilots	4	0	hp
+ship_travel	1	Ship travel	ship travel	3	0.00568	hq
+ferries	0	Ferries	ferries	4	0	hr
+rail_travel	1	Rail travel	rail travel	3	0.00055	hs
+driving	1	Driving	driving	3	0.00622	ht
+roads_traffic	0	Roads and traffic	roads and traffic	4	0	hu
+cars	0	Cars	cars	4	0	hv
+taxis	0	Taxis	taxicabs and taxicab drivers	4	0	hw
+ride_sharing	0	Ride sharing	ride sharing	4	0	hx
+bridges_tunnels	0	Bridges and tunnels	bridges and tunnels	4	0	hy
+commuting	1	Commuting	commuting	3	0.00193	hz
+transit_systems	0	Transit systems	transit systems	4	0	ia
+subways	0	Subways	subways	4	0	ib
+buses	0	Buses	buses	4	0	ic
+stations	0	Stations and terminals	stations and terminals	4	0	id
+trucking	1	Trucking	trucking	3	0.00039	ie
+utility vehicles and other light trucks	0	Utility vehicles and other light trucks	utility vehicles and other light trucks	4	0	if
+research	1	Research	research	2	0.03336	ig
+mathematics	1	Mathematics	mathematics	3	0.00006	ih
+physics	1	Physics	physics	3	0.00009	ii
+chemistry	1	Chemistry	chemistry	3	0.00056	ij
+computer_science	1	Computer Science	computer science	3	0.00159	ik
+cryptocurrency	0	Cryptocurrency	cryptocurrency	4	0	il
+ai	1	Artificial Intelligence	artificial intelligence	3	0.00609	im
+ml	0	Machine Learning	machine learning	4	0	in
+engineering	1	Engineering	engineering	3	0.01204	io
+biology	1	Biology & biochemistry	biology & biochemistry	3	0.00002	ip
+physiology	1	Anatomy & physiology	anatomy & physiology	3	0.00021	iq
+genetics	1	Genetics & heredity	genetics & heredity	3	0.00069	ir
+anthropology	1	Archaeology & anthropology	archaeology & anthropology	3	0.00046	is
+space	1	Space	space	3	0.00533	it
+space_shuttle	0	Space shuttle	space shuttle	4	0	iu
+inventions	1	Inventions & patents	inventions & patents	3	0.0003	iv
+standards	1	Standards & standardization	standards & standardization	3	0.00005	iw
+education	1	Education	education	2	0.08582	ix
+schools	1	Schools	schools	3	0.01638	iy
+universities	1	Colleges & universities	colleges & universities	3	0.00505	iz
+testing	1	Testing	testing	3	0.01903	ja
+financial_aid	1	Financial aid	financial aid	3	0.00029	jb
+tuition	0	Tuition	tuition	4	0	jc
+teachers	1	Teachers & school employees	teachers & school employees	3	0.00093	jd
+libraries	1	Libraries & librarians	libraries & librarians	3	0.00015	je
+reading_writing	1	Reading & writing skills	reading & writing skills	3	0.00002	jf
+english	1	English language	English language	3	0.00039	jg
+health	1	Health	health	1	0.47432	jh
+diseases	1	Diseases & conditions	diseases & conditions	2	0.42747	ji
+cancer	1	Cancer	cancer	3	0.00091	jj
+cardiovascular	1	Cardiovascular disease	cardiovascular disease	3	0.00002	jk
+heart_disease	0	Heart disease	heart disease	4	0	jl
+diabetes	1	Diabetes	diabetes	3	0.01242	jm
+womens_health	1	Women's health	women's health	3	0.00011	jn
+breast	0	Breast	breast	4	0	jo
+reproduction	0	Reproduction (biological)	reproduction (biological)	3	0	jp
+pregnancy	0	Pregnancy and obstetrics	pregnancy and obstetrics	3	0	jq
+mens_health	1	Men's health	men's health	3	0.00043	jr
+neurological_disorders	1	Neurological disorders	neurological disorders	3	0.0008	js
+mental_health	1	Mental health	mental health	3	0.00578	jt
+suicide	0	Suicide	suicide	4	0	ju
+infectious_disease	1	Infectious diseases	infectious diseases	3	0.40763	jv
+viruses	0	Viruses	viruses	4	0	jw
+covid	1	COVID-19	COVID-19	4	0.39765	jx
+malaria	1	Malaria	malaria	4	0.01431	jy
+hepatitis	1	Hepatitis	hepatitis	4	0.00173	jz
+dengue	1	Dengue	dengue	4	0.00127	ka
+influenza	1	Influenza	influenza	4	0.01187	kb
+hiv	1	HIV	HIV	4	0.00169	kc
+aids	0	Acquired immune deficiency syndrome (aids)	acquired immune deficiency syndrome (aids)	5	0	kd
+ebola	1	Ebola	ebola	4	0.0118	ke
+zika	1	Zika	zika	4	0.00197	kf
+anthrax	0	Anthrax	anthrax	4	0	kg
+unhealth	1	Sources of unhealth	sources of unhealth	2	0.01145	kh
+obesity	1	Obesity	obesity	3	0.00145	ki
+exercise	0	Exercise	exercise	4	0	kj
+carbs	0	Controversy: is far or carbs the bigger problem?	controversy: is far or carbs the bigger problem?	3	0	kk
+best_diet	0	Controversy: what weight loss strategy is best?	controversy: what weight loss strategy is best?	3	0	kl
+school_soda	0	Controversy: ban soda machines in schools (y/n)	controversy: ban soda machines in schools (y/n)	3	0	km
+school_lunches	0	Controversy: require healthier school lunches (pro/con)	controversy: require healthier school lunches (pro/con)	3	0	kn
+accidents	1	Accidents	accidents	3	0.00288	ko
+pollution	1	Pollution	pollution	3	0.0036	kp
+air_pollution	0	Air pollution	air pollution	4	0	kq
+water_polution	0	Water pollution	water pollution	4	0	vi
+toxins	0	Hazardous and toxic substances	hazardous and toxic substances	4	0	kr
+smoking	1	Smoking	smoking	3	0.00041	ks
+vaping	1	Vaping	vaping	3	0.00117	kt
+alcoholism	1	Alcoholism	alcoholism	3	0.00026	ku
+addiction	1	Drug addiction	drug addiction	3	0.00119	kv
+opioids	0	Opioid epidemic	opioid epidemic	3	0	kw
+radiation	1	Radiation	radiation	3	0.00012	kx
+recalls	1	Product recalls & bans	product recalls & bans	3	0.00006	ky
+steroids	1	Steroids	steroids	3	0.00005	kz
+noise	1	Noise	noise	3	0.00023	la
+age	0	"Age, chronological"	"age, chronological"	3	0	lb
+death_dying	0	Death and dying	death and dying	3	0	lc
+deaths	0	Deaths	deaths	3	0	ld
+healthy_eating	1	Healthy eating	healthy eating	2	0.02088	le
+diets	0	Diet & nutrition	diet & nutrition	3	0	lf
+cooking	0	Cooking & recipes	cooking & recipes	3	0	lg
+recipes	0	Recipes	recipes	4	0	lh
+food	0	Food	food	3	0	li
+meat	0	Meat	meat	3	0	lj
+animal_antibiotics	0	Controversy: stricter limits on farm animal antibiotic use? pro/con	controversy: stricter limits on farm animal antibiotic use? pro/con	3	0	lk
+grain	0	Grain	grain	3	0	ll
+dairy	0	Dairy products	dairy products	3	0	lm
+fruit	0	Fruit	fruit	3	0	ln
+fast_food	0	Fast food industry	fast food industry	3	0	lo
+veganism	0	Veganism	veganism	3	0	lp
+food_contamination	0	Food contamination and poisoning	food contamination and poisoning	3	0	lq
+herbicide_limits	0	Controversy: tougher limits on herbicides/pesticides? y/n	controversy: tougher limits on herbicides/pesticides? y/n	3	0	lr
+genetic_engineering	0	Genetic engineering	genetic engineering	3	0	ls
+gmo	0	Controversy: GMO pro/con	controversy: GMO pro/con	3	0	lt
+beverages	0	Beverages	beverages	3	0	lu
+water	0	Water	water	3	0	lv
+sodas	0	Soft drinks	soft drinks	3	0	lw
+drinks	0	Alcoholic beverages	alcoholic beverages	3	0	lx
+supermarkets	0	Supermarkets	supermarkets	3	0	ly
+medicine	1	Medicine & healthcare	medicine & healthcare	2	0.1757	lz
+medicine_health	0	Medicine and health	medicine and health	3	0	ma
+personal_health	0	"Health, personal"	"health, personal"	3	0	mb
+healthcare	1	Healthcare	healthcare	3	0.01079	mc
+hospitals	0	Hospitals	hospitals	4	0	md
+doctors	0	Doctors	doctors	4	0	me
+nursing	0	Nursing and nurses	nursing and nurses	4	0	mf
+pharmaceuticals	1	Pharmaceuticals	pharmaceuticals	3	0.00649	mg
+vaccination	1	Vaccination	vaccination	3	0.00311	mh
+antivax	0	Controversy: vaccination pro/con	controversy: vaccination pro/con	4	0	mi
+surgery	1	Surgery and surgeons	surgery and surgeons	3	0.0004	mj
+transplants	0	Transplants	transplants	4	0	mk
+safety	1	Safety	safety	2	0.00173	ml
+fires	1	Fires and firefighters	fires and firefighters	3	0.00164	mm
+firemen	0	Fires and firemen	fires and firemen	4	0	mn
+rescues	1	Rescues	rescues	3	0.0001	mo
+health_insurance	1	Health insurance	health insurance	2	0.00444	mp
+managed_care	1	Health insurance & managed care	health insurance & managed care	3	0.00416	mq
+drug_prices	0	Controversy: drug price regulation (pro/con)	controversy: drug price regulation (pro/con)	3	0	mr
+birth_control_coverage	0	Controversy: must insurance cover birth control (y/n)	controversy: must insurance cover birth control (y/n)	3	0	ms
+abortion_coverage	0	Controversy: must insurance cover abortion (y/n)	controversy: must insurance cover abortion (y/n)	3	0	mt
+medicaid	1	Medicaid	medicaid	3	0.00023	mu
+medicare	1	Medicare	medicare	3	0.00044	mv
+dna	0	Dna (deoxyribonucleic acid)	dna (deoxyribonucleic acid)	2	0	mw
+blood	0	Blood	blood	2	0	mx
+intelligence	0	Intelligence	intelligence	2	0	my
+media	1	Media	media	1	0.0138	mz
+news_media	0	News and news media	news and news media	2	0	na
+newspapers	0	Newspapers	newspapers	2	0	nb
+editorials	0	Editorials	editorials	2	0	nc
+corrections	0	Correction stories	correction stories	2	0	nd
+entertainment	1	Entertainment	entertainment	1	0.07349	ne
+amusements	0	Entertainment and amusements	entertainment and amusements	2	0	nf
+eating_drinking	1	Eating & drinking	eating & drinking	2	0.00612	ng
+bakeries	1	Bakeries and baked products	bakeries and baked products	3	0.00061	nh
+restaurants	1	Restaurants	restaurants	3	0.00442	ni
+bars	1	Bars	bars	3	0.00007	nj
+wines	1	Wines	wines	3	0.0005	nk
+beer	1	Beer	beer	3	0.00062	nl
+shopping	1	Shopping	shopping	2	0.00432	nm
+jewelry	0	Jewels and jewelry	jewels and jewelry	3	0	nn
+apparel	0	Apparel	apparel	3	0	no
+shoes_boots	0	Shoes and boots	shoes and boots	3	0	np
+furniture	0	Furniture	furniture	3	0	nq
+furnishings	0	Home furnishings	home furnishings	3	0	nr
+antiques	0	Antiques	antiques	3	0	ns
+design	0	Design	design	3	0	nt
+interior_design	0	Interior design	interior design	3	0	nu
+toys	0	Toys	toys	3	0	nv
+recording_equipment	0	Recording equipment	recording equipment	3	0	nw
+new_products	0	"New models, design and products"	"new models, design and products"	3	0	nx
+collections	0	Collectors and collections	collectors and collections	3	0	ny
+gifts	0	Gifts	gifts	3	0	nz
+auctions	0	Auctions	auctions	3	0	oa
+shows	1	Shows etc	shows etc	2	0.06058	ob
+radio	0	Radio	radio	3	0	oc
+audio_recordings	0	Recordings (audio)	recordings (audio)	3	0	od
+labels	0	Labeling and labels	labeling and labels	3	0	oe
+music	0	Music	music	3	0	of
+rock	0	Rock	rock	3	0	og
+classical_music	0	Classical music	classical music	3	0	oh
+jazz	0	Jazz	jazz	3	0	oi
+tv	0	Television	television	3	0	oj
+cable_tv	0	Cable television	cable television	3	0	ok
+movies	0	Motion pictures	motion pictures	3	0	ol
+video_recordings	0	Recordings (video)	recordings (video)	3	0	om
+oscars	0	Academy awards (oscars)	academy awards (oscars)	3	0	on
+documentaries	0	Documentary films and programs	documentary films and programs	3	0	oo
+ratings	0	Ratings and rating systems	ratings and rating systems	3	0	op
+theater	0	Theater	theater	3	0	oq
+opera	0	Opera	opera	3	0	or
+concerts	0	Concerts and recitals	concerts and recitals	3	0	os
+nightclubs	0	Nightclubs and cabarets	nightclubs and cabarets	3	0	ot
+comedy	0	Comedy and humor	comedy and humor	3	0	ou
+art_shows	0	Art shows	art shows	3	0	ov
+exhibits	0	Shows (exhibits)	shows (exhibits)	3	0	ow
+festivals	0	Festivals	festivals	3	0	ox
+christmas	0	Christmas	christmas	3	0	oy
+new_year	0	New year	new year	3	0	oz
+weddings	0	Weddings and engagements	weddings and engagements	3	0	pa
+parades	0	Parades	parades	3	0	pb
+royal_family	0	Royal family	royal family	3	0	pc
+parties	0	Parties (social)	parties (social)	3	0	pd
+dancing	0	Dancing	dancing	3	0	pe
+games	0	Games	games	3	0	pf
+bridge	0	Bridge	bridge	3	0	pg
+chess	0	Chess	chess	3	0	ph
+contests	0	Contests and prizes	contests and prizes	3	0	pi
+gambling	0	Gambling	gambling	3	0	pj
+lifestyle	1	Lifestyle	lifestyle	2	0.00002	pk
+leisure	0	Leisure	leisure	2	0	pl
+gardening	0	Gardening	gardening	2	0	pm
+dogs	0	Dogs	dogs	2	0	pn
+sports	1	Sports	sports	1	0.04505	po
+athletics and sports	0	Athletics and sports	athletics and sports	2	0	pp
+football	0	Football	football	2	0	pq
+super_bowl	0	Super bowl	super bowl	2	0	pr
+basketball	0	Basketball	basketball	2	0	ps
+college_sports	0	College athletics	college athletics	2	0	pt
+baseball	0	Baseball	baseball	2	0	pu
+tennis	0	Tennis	tennis	2	0	pv
+times_sports	0	Sports of the times (times column)	sports of the times (times column)	2	0	pw
+soccer	0	Soccer	soccer	2	0	px
+icehockey	0	"Hockey, ice"	"hockey, ice"	2	0	py
+skating	0	Ice skating	ice skating	2	0	pz
+figure_skating	0	Figure skating	figure skating	2	0	qa
+ncaa_basketball	0	Ncaa basketball tournament	ncaa basketball tournament	2	0	qb
+olympics	0	Olympic games	olympic games	2	0	qc
+skiing	0	Skiing	skiing	2	0	qd
+playoffs	0	Playoff games	playoff games	2	0	qe
+boxing	0	Boxing	boxing	2	0	qf
+us_open	0	United states open (tennis)	united states open (tennis)	2	0	qg
+horse_racing	0	Horse racing	horse racing	2	0	qh
+world_series	0	World series	world series	2	0	qi
+coaches	0	Coaches and managers	coaches and managers	2	0	qj
+draft	0	Draft and recruitment (sports)	draft and recruitment (sports)	2	0	qk
+trades	0	Trades (sports)	trades (sports)	2	0	ql
+free_agents	0	Free agents (sports)	free agents (sports)	2	0	qm
+car_racing	0	Automobile racing	automobile racing	2	0	qn
+interscholastics	0	Interscholastic athletics	interscholastic athletics	2	0	qo
+running	0	Running	running	2	0	qp
+marathon running	0	Marathon running	marathon running	2	0	qq
+bicycles and bicycling	0	Bicycles and bicycling	bicycles and bicycling	2	0	qr
+golf	0	Golf	golf	2	0	qs
+swimming	0	Swimming	swimming	2	0	qt
+track_field	0	Track and field	track and field	2	0	qu
+summer_games	0	Summer games (olympics)	summer games (olympics)	2	0	qv
+stadiums	0	Stadiums and arenas	stadiums and arenas	2	0	qw
+hunting	0	Hunting and trapping	hunting and trapping	2	0	qx
+world_cup	0	World cup (soccer)	world cup (soccer)	2	0	qy
+fishing	0	"Fishing, sport"	"fishing, sport"	2	0	qz
+boating	0	Boats and boating	boats and boating	2	0	ra
+records	0	Records and achievements	records and achievements	2	0	rb
+weather	1	Weather	weather	1	0.00875	rc
+snow	1	Snow and snowstorms	snow and snowstorms	2	0.00029	re
+rain	1	Rain	rain	2	0.000530744	uj
+hurricanes	1	Hurricanes and tropical storms	hurricanes and tropical storms	2	0.00156	rd
+katrina	0	Hurricane katrina	hurricane katrina	3	0	uk
+money	1	Money	money	1	0.11308	rf
+finance	1	Finance	finance	2	0.06018	rg
+finances	0	Finances	finances	3	0	rh
+banking	0	Banking	banking	3	0	ri
+savings_loan_ass	0	Savings and loan associations	savings and loan associations	3	0	rj
+credit	0	Credit	credit	3	0	rk
+credit_cards	0	Credit and money cards	credit and money cards	3	0	rl
+mortgages	0	Mortgages	mortgages	3	0	rm
+interest	0	Interest rates	interest rates	3	0	rn
+savings	0	Savings	savings	3	0	ro
+stocks_bonds	0	Stocks and bonds	stocks and bonds	3	0	rp
+government_bonds	0	Government bonds	government bonds	3	0	rq
+nasdaq	0	Nasdaq composite index	nasdaq composite index	3	0	rr
+dow_jones	0	Dow jones stock average	dow jones stock average	3	0	rs
+mutual_funds	0	Mutual funds	mutual funds	3	0	rt
+futures	0	Futures and options trading	futures and options trading	3	0	ru
+futures_trading	0	Futures trading	futures trading	3	0	rv
+brokers	0	Brokers and brokerage firms	brokers and brokerage firms	3	0	rw
+stock_prices	0	Stock prices and trading volume	stock prices and trading volume	3	0	rx
+currency	0	Currency	currency	3	0	ry
+corporations	0	Corporations	corporations	3	0	rz
+company_reports	0	Company reports	company reports	3	0	sa
+mergers	0	"Mergers, acquisitions and divestitures"	"mergers, acquisitions and divestitures"	3	0	sb
+taxation	1	Taxation	taxation	2	0.0041	sc
+federal_tax	0	Federal taxes (us)	federal taxes (us)	3	0	sd
+income_tax	0	Income tax	income tax	3	0	se
+property_taxes	0	Property taxes	property taxes	3	0	sf
+tax_credits	0	Tax credits	tax credits	3	0	sg
+industries	1	Industries	industries	2	0.03024	sh
+industry profiles	0	Industry profiles	industry profiles	3	0	si
+small business	0	Small business	small business	3	0	sj
+postal service	0	Postal service	postal service	3	0	sk
+retail	1	Retail	retail	3	0.00356	sl
+shopping centers	0	Shopping centers	shopping centers	4	0	sm
+hotels and motels	1	Hotels	hotels	3	0.00162	sn
+manufacturing	1	Manufacturing	manufacturing	3	0.00346	so
+factories and industrial plants	0	Factories and industrial plants	factories and industrial plants	4	0	sp
+production	0	Production	production	4	0	sq
+textiles	0	Textiles	textiles	4	0	sr
+chemicals	0	Chemicals	chemicals	4	0	ss
+mining	1	Mining	mining	3	0.00051	st
+metals_minerals	0	Metals and minerals	metals and minerals	4	0	su
+steel	0	Steel and iron	steel and iron	4	0	sv
+construction	1	Construction & home repairs	construction & home repairs	3	0.00035	sw
+architecture	0	Architecture	architecture	4	0	sx
+home repairs and improvements	0	Home repairs and improvements	home repairs and improvements	4	0	sy
+home repairs	0	Home repairs	home repairs	4	0	sz
+real_estate	1	Real estate	real estate	3	0.00275	ta
+condominiums	0	Condominiums	condominiums	4	0	tb
+office buildings and commercial properties	0	Office buildings and commercial properties	office buildings and commercial properties	4	0	tc
+renting and leasing	0	Renting and leasing	renting and leasing	4	0	td
+insurance	1	Insurance	insurance	3	0.0075	te
+automobile insurance and liability	0	Car insurance	car insurance	4	0	tf
+accounting and accountants	0	Accounting	accounting	4	0	tg
+marketing_sales	1	Marketing & sales	marketing & sales	3	0.00741	th
+advertising and marketing	0	Advertising & marketing	advertising & marketing	4	0	ti
+marketing and merchandising	0	Marketing	marketing	4	0	tj
+advertising	0	Advertising	advertising	4	0	tk
+trade_shows	0	Trade shows and fairs	trade shows and fairs	4	0	tl
+conventions	0	Conventions & conferences	conventions & conferences	4	0	zu
+sales	0	Sales	sales	4	0	tm
+discount selling	0	Discount selling	discount selling	4	0	tn
+economic_trends	1	Economic conditions & trends	economic conditions & trends	2	0.03688	to
+us_economy	0	United states economy	united states economy	3	0	tp
+recession	0	Recession and depression	recession and depression	3	0	tq
+income	1	Income	income	3	0.00454	tr
+wages	0	Wages	wages	4	0	ts
+strikes	1	Strikes	strikes	3	0.00091	tt
+prices	1	Prices	prices	3	0.00502	tu
+fares_fees	0	"Prices (fares, fees and rates)"	"prices (fares, fees and rates)"	4	0	tv
+consumer_behavior	0	Consumer behavior	consumer behavior	3	0	tw
+shortages	0	Shortages	shortages	3	0	tx
+company_profiles	0	Company and organization profiles	company and organization profiles	2	0	ty
+bankruptcies	0	Bankruptcies	bankruptcies	2	0	tz
+executives	0	Executives and management	executives and management	2	0	ua
+directors	0	Boards of directors	boards of directors	2	0	ub
+relocation	0	Relocation of business	relocation of business	2	0	uc
+budgets	0	Budgets and budgeting	budgets and budgeting	2	0	ud
+personal_finances	0	Personal finances	personal finances	2	0	ue
+philanthropy	0	Philanthropy	philanthropy	2	0	uf
+privatization	0	Privatization	privatization	2	0	ug
+contracts	0	Contracts	contracts	2	0	uh
+federal_aid	0	Federal aid	federal aid	2	0	ui
+environment_energy	1	Environment/energy	environment/energy	1	0.069841956	ul
+energy	1	Energy	energy	2	0.052484667	um
+electricity	1	Electricity	electricity	3	0.001090973	un
+light	0	Light	light	4	0	uo
+blackouts	0	Blackouts and brownouts (electrical)	blackouts and brownouts (electrical)	4	0	up
+fossil_fuel	1	Fossil fuel	fossil fuel	3	0.050194606	uq
+oil	1	Oil & gasoline	oil & gasoline	4	0.008177386	ur
+gas	1	Natural gas	natural gas	4	0.000717487	us
+coal	1	Coal	coal	4	0.037781098	ut
+nuclear_power	1	Nuclear power	nuclear power	3	0.000373486	uu
+renewables	1	Renewable energy	renewable energy	3	0.004383551	uv
+solar_power	1	Solar power	solar power	4	0.000727316	uw
+wind_power	1	Wind power	wind power	4	0.000452115	ux
+agriculture	1	Agriculture	agriculture	2	0.012049851	uy
+farmers	0	Farmers	farmers	3	0	uz
+livestock	0	Livestock	livestock	3	0	va
+animals	0	Animals	animals	3	0	vb
+insects	0	Insects	insects	3	0	vc
+environment	1	Environment	environment	2	0.013081852	vd
+climate_change	1	Climate change	climate change	3	0.003164806	ve
+endangered_species	1	Endangered species	endangered species	3	0.000855087	vf
+recycling	1	Waste & recycling	waste & recycling	3	0.000579887	vg
+waste	0	Waste materials and disposal	waste materials and disposal	4	0	vh
+marine_life	1	Marine life	marine life	3	0.00097303	vj
+fisheries	0	"Fishing, commercial"	"fishing, commercial"	4	0	vk
+birds	1	Birds	birds	3	0.000688001	vl
+forests	1	Forests	forests	3	0.00062903	vm
+plants	1	Plants	plants	3	0.000255543	vn
+trees	0	Trees and shrubs	trees and shrubs	4	0	vo
+floods	1	Floods	floods	3	0.000727316	vp
+earthquakes	1	Earthquakes	earthquakes	3	0.000373486	vq
+drought	1	Drought	drought	3	0.0002064	vr
+land_use	0	Land use policies	land use policies	3	0	vs
+parks	1	Parks	parks	3	0.00076663	vt
+military	1	Military	military	1	0.034223148	vu
+defense	0	"Armament, defense and military forces"	"armament, defense and military forces"	2	0	vv
+us_defense	0	United states armament and defense	united states armament and defense	3	0	vw
+weapons	1	Weapons	weapons	2	0.016600487	vx
+nuclear_weapons	1	Nuclear weapons	nuclear weapons	3	0.000855087	vy
+bio_chem_weapons	1	Biological & chemical weapons	biological & chemical weapons	3	0.000540572	vz
+autonomous_weapons	1	Autonomous weapons	autonomous weapons	3	0.0000295	wa
+missiles	1	Missiles	missiles	3	0.000383315	wb
+missile_defence	0	Missiles and missile defense systems	missiles and missile defense systems	4	0	wc
+warships	1	Warships	warships	3	0.004245951	wd
+military_aircraft	1	Military aircraft	military aircraft	3	0.000314515	we
+bases_personnel	1	Military bases & personnel	military bases & personnel	3	0.000157257	wf
+military_personnel	0	Military personnel	military personnel	4	0	wg
+bases	0	Military bases and installations	military bases and installations	4	0	wh
+pentagon	0	Pentagon building	pentagon building	4	0	wi
+arms_exports	1	Arms exports	arms exports	3	0.000127772	wj
+disarmament	1	Arms control & disarmament	arms control & disarmament	3	0.000334172	wk
+armed_conflict	1	Armed conflict	armed conflict	2	0.003892121	wl
+military_action	0	Military action	military action	3	0	wm
+war_revolution	0	War and revolution	war and revolution	3	0	wn
+yemen_war	1	Yemen war	Yemen war	3	0.0002064	wo
+syria_war	1	Syria war	Syria war	3	0.0000491	wp
+libya_war	1	Libya war	Libya war	3	0.00002	wq
+afghanistan_war	1	Afghanistan war	Afghanistan war	3	0.000353829	wr
+iraq_wars	1	Iraq wars	Iraq wars	3	0.00002	ws
+vietnam_war	1	Vietnam war	Vietnam war	3	0.000265372	wt
+ww2	1	World War II (1939-45)	World War II (1939-45)	3	0.000432458	wu
+civil_war	1	Civil war & guerrilla warfare	civil war & guerrilla warfare	3	0.000668344	wv
+independence_movements	0	Independence movements	Independence movements	4	0	ww
+pows	1	Prisoners of war	prisoners of war	3	0.000285029	wz
+other_conflict	1	Other conflict	other conflict	2	0.009278188	xa
+cold_war	1	Cold war	Cold war	3	0.0078727	xb
+psychological_warfare	1	Psychological warfare	Psychological warfare	3	0.000167086	xc
+cyberwarfare	1	Cyberwarfare	Cyberwarfare	3	0.0001376	xd
+espionage	1	Espionage	Espionage	3	0.001130288	xe
+military_coups	1	Military coups	Military coups	3	0.0000885	xf
+military_spending	1	Military spending	military spending	2	0.001002516	xg
+politics	1	Politics	politics	1	0.153001651	xh
+elections	0	Elections	elections	2	0	xi
+election_issues	0	Election issues	election issues	2	0	xj
+primaries	0	Primaries	primaries	2	0	xk
+national_convensions	0	"Conventions, national (us)"	"conventions, national (us)"	2	0	xl
+presidential_elections	0	Presidential elections (us)	presidential elections (us)	2	0	xm
+election1988	0	Presidential election of 1988	presidential election of 1988	2	0	xn
+election1996	0	Presidential election of 1996	presidential election of 1996	2	0	xo
+election2000	0	Presidential election of 2000	presidential election of 2000	2	0	xp
+election 2004	0	Presidential election of 2004	presidential election of 2004	2	0	xq
+election2008	0	Presidential election of 2008	presidential election of 2008	2	0	xr
+presidents	0	Presidents and presidency (us)	presidents and presidency (us)	2	0	xs
+vice_presidents	0	Vice presidents and vice presidency (us)	vice presidents and vice presidency (us)	2	0	xt
+politics_government	0	Politics and government	politics and government	2	0	xu
+us_politics	0	United states politics and government	united states politics and government	2	0	xv
+legislatures	0	Legislatures and parliaments	legislatures and parliaments	2	0	xw
+local_government	0	Local government	local government	2	0	xx
+govenors	0	Governors (us)	governors (us)	2	0	xy
+mayors	0	Mayors	mayors	2	0	xz
+city_councils	0	City councils	city councils	2	0	ya
+referendums	0	Referendums	referendums	2	0	yb
+impeachment	0	Impeachment	impeachment	2	0	yc
+political_appointments	0	Appointments and executive changes	appointments and executive changes	2	0	yd
+amendments	0	Constitutional amendments	constitutional amendments	2	0	ye
+reform	0	Reform and reorganization	reform and reorganization	2	0	yf
+foreign_service	0	Foreign service	foreign service	2	0	yg
+us_foreign_service	0	United states foreign service	united states foreign service	2	0	yh
+resignations	0	"Suspensions, dismissals and resignations"	"suspensions, dismissals and resignations"	2	0	yi
+shutdowns	0	Shutdowns (institutional)	shutdowns (institutional)	2	0	yj
+vetoes	0	Vetoes (us)	vetoes (us)	2	0	yk
+summits	0	Summit conferences	summit conferences	2	0	yl
+foreign_aid	0	Foreign aid	foreign aid	2	0	ym
+sanctions	0	Embargoes and economic sanctions	embargoes and economic sanctions	2	0	yn
+deregulation	0	Regulation and deregulation of industry	regulation and deregulation of industry	2	0	yo
+zoning	0	Zoning	zoning	2	0	yp
+political_ads	0	Political advertising	political advertising	2	0	yq
+debates	0	Debating	debating	2	0	yr
+culture	1	Culture	culture	1	0.030851942	ys
+history	0	History	history	2	0	yt
+biographical_info	0	Biographical information	biographical information	2	0	yu
+daily_quote	0	Quotation of the day	quotation of the day	2	0	yv
+books	0	Books and literature	books and literature	2	0	yw
+reviews	0	Reviews	reviews	2	0	yx
+awards	0	"Awards, decorations and honors"	"awards, decorations and honors"	2	0	yy
+obituaries	0	Deaths (obituaries)	deaths (obituaries)	2	0	yz
+holidays	0	Holidays and special occasions	holidays and special occasions	2	0	za
+photography	0	Photography	photography	2	0	zb
+writing	0	Writing and writers	writing and writers	2	0	zc
+art	0	Art	art	2	0	zd
+historic_sites	0	Historic buildings and sites	historic buildings and sites	2	0	ze
+monuments	0	Monuments and memorials	monuments and memorials	2	0	zf
+restoration	0	Restoration and rehabilitation	restoration and rehabilitation	2	0	zg
+world_trade_center	0	World trade center (nyc)	world trade center (nyc)	2	0	zh
+museums	0	Museums	museums	2	0	zi
+book_trade	0	Book trade	book trade	2	0	zj
+magazines	0	Magazines	magazines	2	0	zk
+poetry	0	Poetry and poets	poetry and poets	2	0	zl
+book_reviews	0	Book reviews	book reviews	2	0	zm
+languages	0	Language and languages	language and languages	2	0	zn
+spanish_language	0	Spanish language	spanish language	2	0	zo
