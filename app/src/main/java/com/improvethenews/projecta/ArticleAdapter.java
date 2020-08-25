@@ -18,6 +18,8 @@ import com.google.android.flexbox.FlexboxLayout;
 
 import org.json.JSONArray;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -59,6 +61,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     public ArticleAdapter(List<Article> articleList, String from, String path, String depth, int screenHeight, int screenWidth) {
 //        this.articleList = articleList.subList(1, articleList.size());
         this.articleList = articleList;
+        try {
+            this.articleList.add(new Article(null, "Improve the News", null, "",0,"", "", new URL("http://www.improvethenews.org/index.php/faq/"), 2, null));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         this.from = from;
         this.path = path;
         this.depth = Integer.valueOf(depth);
@@ -82,9 +89,14 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
             case 0:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card, parent, false);
                 break;
-            default:
+            case 1:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_half, parent, false);
                 break;
+            case 2:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_footer, parent, false);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + viewType);
         }
 
         final ArticleViewHolder articleViewHolder = new ArticleViewHolder(view);
@@ -207,10 +219,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
             else
                 holder.mnemonic = null;
 
-            if (holder.index == 0)
-                holder.articleBreadcrumb.setText(path);
-            else
-                holder.articleBreadcrumb.setText(path + " > " + articleList.get(holder.index).getTitle());
+            if (holder.articleBreadcrumb != null) {
+                if (holder.index == 0)
+                    holder.articleBreadcrumb.setText(path);
+                else
+                    holder.articleBreadcrumb.setText(path + " > " + articleList.get(holder.index).getTitle());
+            }
         }
         holder.articleTitle.setText(articleList.get(holder.index).getTitle());
 

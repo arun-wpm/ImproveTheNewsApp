@@ -27,20 +27,6 @@ public class ArticleExtractor {
     URL url;
     ArrayList<Article> articleList;
 
-//    private Article parseLine(String line) {
-//        String[] info = line.split("\t");
-//        //Format:
-//        //UNK, UNK, relative time, headline, url, imgurl, article size?, tags...
-//        try {
-//            Article a = new Article(new URL(info[5]), info[3], "New York Times", info[2], new URL(info[4]), Arrays.copyOfRange(info, 7, info.length));
-//            return a;
-//        } catch (MalformedURLException e) {
-//            Article a = new Article(null, "", "", "", "", null, 0);
-//            e.printStackTrace();
-//            return a;
-//        }
-//    }
-
     private Article parseJSON(JSONArray array, int type) {
         //[<medianame>,<howlongago>,<title>,<url>,<imgurl>,<markup>]
         try {
@@ -66,60 +52,11 @@ public class ArticleExtractor {
         this.articleList = new ArrayList<Article>();
     }
 
-//    public void pull(final int n) {
-//        //old: used for .tsv files format
-//        Thread t = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
-//                    String line;
-//                    while ((line = br.readLine()) != null) {
-//                        articleList.add(0, parseLine(line));
-//                        if (articleList.size() > n) {
-//                            articleList.remove(n);
-//                        }
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                Log.d(TAG, "pull done");
-//            }
-//        });
-//        t.start();
-//        try {
-//            t.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public void pull() {
-        //new
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    //performance improvement?
-//                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//                    connection.setRequestMethod("GET");
-//                    connection.connect();
-//                    InputStream stream = connection.getInputStream();
-//                    String all = "";
-//                    if (stream != null) {
-//                        Reader reader = new InputStreamReader(stream, "UTF-8");
-//                        StringBuffer buffer = new StringBuffer();
-//                        char[] rawBuffer = new char[8192];
-//                        int readSize;
-//                        while ((readSize = reader.read(rawBuffer)) != -1) {
-//                            if (readSize > 8192) {
-//                                readSize = 8192;
-//                            }
-//                            buffer.append(rawBuffer, 0, readSize);
-//                        }
-//                        all = buffer.toString();
-//                    }
-
                     BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
                     String all = br.readLine();
                     JSONArray array = new JSONArray(all);
@@ -154,9 +91,6 @@ public class ArticleExtractor {
     }
 
     public ArrayList<Article> getArticleList() {
-//        for (int i = 0; i < articleList.size(); i++) {
-//            articleList.get(i).getImg();
-//        }
         for (int i = 0; i < articleList.size(); i++) {
             Log.d(TAG, "getArticleList: " + articleList.get(i).getUrl());
         }

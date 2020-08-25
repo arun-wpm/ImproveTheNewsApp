@@ -5,4 +5,6 @@
     <string name="title_Sliders">Sliders</string>
     <string name="article_source">http://www.improvethenews.org/appdata.php/?topic=</string>
     <string name="feedback_url">http://ec2-3-21-45-12.us-east-2.compute.amazonaws.com/recordfb_app.php</string>
+    <string name="footer">Just as it\'s healthier to choose what you eat deliberately than impulsively, it\'s more empowering to chose your news diet deliberately on this site than to randomly read what marketers and machine-learning algorithms elsewhere predict that you\'ll impulsively click on. You can make these deliberate choices about topic, bias, style, etc. by adjusting the sliders.\nThis app was created by MIT student Arun Wongprommoon. Its news feed is based on a research project lead by Prof. Max Tegmark on automated news classification... [NOTE: what\'s the rest?]</string>
+    <string name="footer_url">http://www.improvethenews.org/index.php/faq/</string>
 </resources>

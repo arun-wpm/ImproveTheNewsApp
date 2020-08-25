@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +31,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Random;
 
@@ -151,6 +154,13 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Comparator<Topic> bydepth = new Comparator<Topic>() {
+            @Override
+            public int compare(Topic topic, Topic t1) {
+                return Integer.compare(topic.getDepth(), t1.getDepth());
+            }
+        };
+        Collections.sort(topicList, bydepth);
     }
 
     private void applySliderListChanges() {
@@ -168,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         setContentView(R.layout.activity_main);
 
         //user id system
@@ -207,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
         topicAdapter = new TopicAdapter(topicList);
         getArticleList(topic);
         mnemonic = articleList.get(0).getTitle();
+        sliderList.get(0).setTitle("Your " + mnemonic + " Feed");
         path = path + mnemonic;
         articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels);
         sliderAdapter = new SliderAdapter(sliderList);

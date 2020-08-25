@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card"
-    android:layout_width="180sp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="8sp">
@@ -14,20 +14,13 @@
         android:orientation="vertical"
         android:padding="8sp">
 
-        <ImageView
-            android:id="@+id/article_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
         <TextView
             android:id="@+id/article_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:text="TextView"
-            android:textSize="16sp"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textSize="20sp"
             android:textStyle="bold"
             tools:text="@tools:sample/lorem" />
 
@@ -35,21 +28,9 @@
             android:id="@+id/article_source"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="@string/footer"
+            android:textAlignment="center"
             tools:text="@tools:sample/full_names" />
-
-        <TextView
-            android:id="@+id/article_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:text="@tools:sample/date/mmddyy" />
-
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/tags"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:flexWrap="wrap"></com.google.android.flexbox.FlexboxLayout>
 
     </LinearLayout>
 

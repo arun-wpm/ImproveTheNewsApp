@@ -13,6 +13,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -20,6 +22,12 @@ import static android.content.ContentValues.TAG;
 public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHolder> implements Filterable {
     private List<Topic> filteredTopicList;
     private List<Topic> topicList;
+    private Comparator<Topic> alphabetical = new Comparator<Topic>() {
+        @Override
+        public int compare(Topic topic, Topic t1) {
+            return topic.title.compareTo(t1.title);
+        }
+    };
 
     @Override
     public Filter getFilter() {
@@ -31,6 +39,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
             List<Topic> filteredList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(topicList);
+//                Collections.sort(filteredList, bydepth);
             }
             else {
                 String pattern = constraint.toString().toLowerCase().trim();
@@ -38,6 +47,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
                     if (topic.getTitle().toLowerCase().contains(pattern))
                         filteredList.add(topic);
                 }
+                Collections.sort(filteredList, alphabetical);
             }
             FilterResults results = new FilterResults();
             results.values = filteredList;
@@ -116,7 +126,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         holder.index = index;
         holder.topicTitle.setText(filteredTopicList.get(index).getTitle());
         holder.mnemonic = filteredTopicList.get(index).getMnemonic();
-        holder.view.getLayoutParams().width = filteredTopicList.get(index).getDepth()*50;
+//        holder.view.getLayoutParams().width = filteredTopicList.get(index).getDepth()*50;
         //TODO: add expand, contract
     }
 
