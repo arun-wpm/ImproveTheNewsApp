@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.google.android.flexbox.FlexboxLayoutManager;
 
@@ -46,17 +47,18 @@ import static android.support.design.widget.BottomSheetBehavior.from;
 public class MainActivity extends AppCompatActivity {
 
     private ArticleAdapter articleAdapter;
-    private SliderAdapter sliderAdapter;
+    private SliderAdapter sliderAdapter, biasSliderAdapter;
     private TopicAdapter topicAdapter;
-    private ArrayList<Slider> sliderList;
+    private ArrayList<Slider> sliderList, biasSliderList;
     private ArrayList<Article> articleList;
     private ArrayList<Topic> topicList;
     private String topic, mnemonic, settings, path, depth;
-    private RecyclerView rv;
+    private RecyclerView rv, srv;
     private SharedPreferences sp;
     private MenuItem searchItem;
     private SearchView searchView;
-    private FlexboxLayoutManager lim;
+    private LinearLayoutManager llm;
+    private FlexboxLayoutManager flm;
     private DisplayMetrics displayMetrics;
     private BottomNavigationView navigation;
 
@@ -126,10 +128,12 @@ public class MainActivity extends AppCompatActivity {
         //mnemonic, to display, official name, "lowercase" name, depth, popularity, code
         topicList = new ArrayList<Topic>();
         sliderList = new ArrayList<Slider>();
-//        sliderList.add(new Slider("Bias Sliders", "", 0, 0, -1));
-//        for (int i = 0; i < defaultSliders.length; i++) {
-//            sliderList.add(new Slider(defaultSliders[i][0], defaultSliders[i][1], sp.getInt(defaultSliders[i][1], Integer.parseInt(defaultSliders[i][2])), Integer.parseInt(defaultSliders[i][2]), 0));
-//        }
+        biasSliderList = new ArrayList<Slider>();
+        biasSliderList.add(new Slider("Bias Sliders", "", 0, 0, -1));
+        for (int i = 0; i < defaultSliders.length; i++) {
+            biasSliderList.add(new Slider(defaultSliders[i][0], defaultSliders[i][1], sp.getInt(defaultSliders[i][1], Integer.parseInt(defaultSliders[i][2])), Integer.parseInt(defaultSliders[i][2]), 0));
+        }
+
         sliderList.add(new Slider("Your " + mnemonic + " Feed", "", 0, 0, -1));
         sliderList.add(new Slider("", "", 0, 0, 2));
         boolean inRange = false;
@@ -218,8 +222,13 @@ public class MainActivity extends AppCompatActivity {
 
         rv = (RecyclerView) findViewById(R.id.recycler);
         rv.setHasFixedSize(true);
-        lim = new FlexboxLayoutManager(this);
-        rv.setLayoutManager(lim);
+        flm = new FlexboxLayoutManager(this);
+        rv.setLayoutManager(flm);
+
+        srv = (RecyclerView) findViewById(R.id.slider_recycler);
+        srv.setHasFixedSize(true);
+        llm = new LinearLayoutManager(this);
+        srv.setLayoutManager(llm);
 
         getTopicAndSliderList(topic, depth);
         topicAdapter = new TopicAdapter(topicList);
@@ -229,6 +238,7 @@ public class MainActivity extends AppCompatActivity {
         path = path + mnemonic;
         articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels);
         sliderAdapter = new SliderAdapter(sliderList);
+        biasSliderAdapter = new SliderAdapter(biasSliderList);
 
         ConstraintLayout sliderBottomSheet = findViewById(R.id.bottom_sheet);
         final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(sliderBottomSheet);
@@ -249,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
 
         //default: show articles
         rv.setAdapter(articleAdapter);
+        srv.setAdapter(biasSliderAdapter);
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

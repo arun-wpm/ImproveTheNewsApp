@@ -76,7 +76,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.slider_card_topic, parent, false);
                 break;
             case 0:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.slider_card, parent, false);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.slider_card_large, parent, false);
                 break;
             case 2:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.slider_pie, parent, false);
@@ -97,8 +97,6 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
         int type = holder.getItemViewType();
         switch (type) {
             case 0:
-                holder.seekBar.getProgressDrawable().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
-                holder.seekBar.getThumb().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
                 holder.seekBar.setProgress(sliderList.get(holder.index).getValue());
                 break;
             case 1:
@@ -140,9 +138,11 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
     public void reevaluateValues() {
         int sum = 0;
         for (Slider slider : sliderList)
-            sum += slider.getValue();
+            if (slider.getType() == 1)
+                sum += slider.getValue();
         for (Slider slider : sliderList)
-            slider.setValue(slider.getValue()*99/sum);
+            if (slider.getType() == 1)
+                slider.setValue(slider.getValue()*99/sum);
         notifyDataSetChanged();
     }
 
@@ -183,25 +183,8 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
         switch (type) {
             case -1:
                 //Category header
-                holder.card.setRadius(24);
-                holder.card.setCardElevation(0);
-                holder.sliderTitle.setTextSize(28);
                 break;
             case 0:
-                params0 = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        1
-                );
-                holder.view0.setLayoutParams(params0);
-                params1 = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        0
-                );
-                holder.view1.setLayoutParams(params1);
-                holder.seekBar.getProgressDrawable().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
-                holder.seekBar.getThumb().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
                 break;
             case 2:
                 //Pie chart
@@ -209,6 +192,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
                 renderPie();
                 break;
             default:
+                //case 1:
                 params0 = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT,
