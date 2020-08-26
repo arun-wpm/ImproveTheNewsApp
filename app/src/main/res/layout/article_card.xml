@@ -5,8 +5,8 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardUseCompatPadding="true"
-    app:cardCornerRadius="8sp">
+    app:cardCornerRadius="8sp"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +17,7 @@
             android:id="@+id/article_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
@@ -25,7 +26,6 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:text="TextView"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:text="@tools:sample/lorem" />
@@ -36,7 +36,6 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:text="TextView"
             tools:text="@tools:sample/full_names" />
 
         <TextView
@@ -46,7 +45,6 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingBottom="8dp"
-            android:text="TextView"
             tools:text="@tools:sample/date/mmddyy" />
 
         <com.google.android.flexbox.FlexboxLayout

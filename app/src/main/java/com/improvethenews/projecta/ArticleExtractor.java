@@ -53,6 +53,13 @@ public class ArticleExtractor {
     }
 
     public void pull() {
+        //type:
+        //-1: article_card_topic
+        //0: article_card
+        //1: article_card_small_left
+        //2: article_card_small_right
+        //3: article_card_half
+        //4: article_card_footer
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -71,7 +78,7 @@ public class ArticleExtractor {
                         for (int j = 0; j < articles.length(); j++) {
                             //for each article
                             Log.d(TAG, "run: " + articles.getJSONArray(j));
-                            articleList.add(parseJSON(articles.getJSONArray(j), (i == 0)?0:1));
+                            articleList.add(parseJSON(articles.getJSONArray(j), (i == 0)?0:(j < 2)?i%2+1:3));
                         }
                     }
                 } catch (IOException e) {

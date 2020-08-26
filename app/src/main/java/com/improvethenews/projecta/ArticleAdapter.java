@@ -38,11 +38,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         TextView articleSource;
         TextView articleTime;
 //        FlexboxLayout articleTags;
-        String url;
-        JSONArray markup;
-        String mnemonic;
+        String url = "";
+        JSONArray markup = null;
+        String mnemonic = "";
         View itemView;
-        int index;
 //        Article.ArticleAsync articleAsync = null;
 
         public ArticleViewHolder(View itemView) {
@@ -62,7 +61,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
 //        this.articleList = articleList.subList(1, articleList.size());
         this.articleList = articleList;
         try {
-            this.articleList.add(new Article(null, "Improve the News", null, "",0,"", "", new URL("http://www.improvethenews.org/index.php/faq/"), 2, null));
+            this.articleList.add(new Article(null, "Improve the News", null, "",0,"", "", new URL("http://www.improvethenews.org/index.php/faq/"), 4, null));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -75,8 +74,14 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
 
     @Override
     public int getItemViewType(int position) {
+        //type:
+        //-1: article_card_topic
+        //0: article_card
+        //1: article_card_small_left
+        //2: article_card_small_right
+        //3: article_card_half
+        //4: article_card_footer
         return articleList.get(position).getType();
-//        return (position < 10)?0:1;
     }
 
     @Override
@@ -90,9 +95,15 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card, parent, false);
                 break;
             case 1:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_half, parent, false);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_small_left, parent, false);
                 break;
             case 2:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_small_right, parent, false);
+                break;
+            case 3:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_half, parent, false);
+                break;
+            case 4:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_footer, parent, false);
                 break;
             default:
@@ -104,7 +115,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (articleViewHolder.mnemonic != null) {
+                if (articleViewHolder.getItemViewType() == -1) {
                     //Links to another topic, not a news article
                     Intent intent = new Intent(v.getContext(), MainActivity.class);
                     String mnemonic = articleViewHolder.mnemonic;
@@ -131,103 +142,67 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
 
     @Override
     public void onViewAttachedToWindow(ArticleViewHolder holder) {
-        if (articleList.get(holder.index).getImgurl() != null) {
-//            holder.articleAsync = articleList.get(holder.index).loadImg(holder.articleImage);
-            articleList.get(holder.index).loadImg(holder.articleImage);
-//            holder.articleImage.setImageBitmap(articleList.get(holder.index).getImg());
-//            holder.articleImage.setVisibility(View.VISIBLE);
-        }
-//        else {
-//            //Category header
-//            holder.articleImage.setImageResource(0);
-//            holder.articleImage.getLayoutParams().height = 0;
-//            holder.articleImage.setVisibility(View.INVISIBLE);
-//        }
-        Log.d(TAG, "onViewAttachedToWindow" + holder.index);
+//        Log.d(TAG, "onViewAttachedToWindow" + holder.index);
     }
 
     @Override
     public void onViewDetachedFromWindow(ArticleViewHolder holder) {
-//        if (holder.articleAsync != null) {
-//            holder.articleAsync.cancel(true);
-//            holder.articleAsync = null;
-//        }
-//        if (holder.articleImage != null)
-//            holder.articleImage.setImageResource(0);
-        Log.d(TAG, "onViewDetachedFromWindow" + holder.index);
+//        Log.d(TAG, "onViewDetachedFromWindow" + holder.index);
     }
 
     @Override
     public void onBindViewHolder(final ArticleViewHolder holder, final int index) {
-        //TODO: refactor this whole thing
         int type = holder.getItemViewType();
-        holder.index = holder.getAdapterPosition();
-        if (articleList.get(holder.index).getImgurl() != null) {
-            switch (type) {
-                case 0:
-                    holder.card.setRadius(24);
-                    holder.card.setCardElevation(10);
-//                    holder.articleImage.setImageBitmap(articleList.get(index).getImg());
-//                    holder.articleImage.setVisibility(View.VISIBLE);
-                    holder.articleTitle.setTextSize(20);
-
-                    holder.articleImage.getLayoutParams().height = screenWidth*9/16;
-                    break;
-                case 1:
-                    int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 180*9/16, holder.itemView.getContext().getResources().getDisplayMetrics());
-                    holder.articleImage.getLayoutParams().height = px;
-                    break;
-                default:
-                    holder.card.setRadius(18);
-                    holder.card.setCardElevation(5);
-//                    holder.articleImage.setImageBitmap(articleList.get(index).getImg());
-//                    holder.articleImage.setVisibility(View.VISIBLE);
-                    holder.articleTitle.setTextSize(16);
-                    break;
-            }
-            Log.d(TAG, "onBindViewHolder: done");
-            if (articleList.get(holder.index).getSource() != null)
-                holder.articleSource.setText(articleList.get(holder.index).getSource());
-            else
-                holder.articleSource.setText("");
-
-            if (articleList.get(holder.index).getReltime() != null)
-                holder.articleTime.setText(articleList.get(holder.index).getReltime());
-            else
-                holder.articleTime.setText("");
-
-            if (articleList.get(holder.index).getUrl() != null)
-                holder.url = articleList.get(holder.index).getUrl().toString();
-            else
-                holder.url = "";
-
-            if (articleList.get(holder.index).getMarkup() != null)
-                holder.markup = articleList.get(holder.index).getMarkup();
-            else
-                holder.markup = null;
+        int i = holder.getAdapterPosition();
+        int px;
+        switch (type) {
+            case -1:
+                holder.articleTitle.setText(articleList.get(i).getTitle());
+                if (articleList.get(i).getMnemonic() != null)
+                    holder.mnemonic = articleList.get(i).getMnemonic();
+                if (holder.articleBreadcrumb != null) {
+                    if (i == 0)
+                        holder.articleBreadcrumb.setText(path);
+                    else
+                        holder.articleBreadcrumb.setText(path + " > " + articleList.get(i).getTitle());
+                }
+                break;
+            case 0:
+                holder.articleImage.getLayoutParams().height = screenWidth*9/16;
+                holder.articleTitle.setText(articleList.get(i).getTitle());
+                if (articleList.get(i).getImgurl() != null)
+                    articleList.get(i).loadImg(holder.articleImage);
+                if (articleList.get(i).getSource() != null)
+                    holder.articleSource.setText(articleList.get(i).getSource());
+                if (articleList.get(i).getReltime() != null)
+                    holder.articleTime.setText(articleList.get(i).getReltime());
+                if (articleList.get(i).getUrl() != null)
+                    holder.url = articleList.get(i).getUrl().toString();
+                if (articleList.get(i).getMarkup() != null)
+                    holder.markup = articleList.get(i).getMarkup();
+                break;
+            case 3:
+                holder.card.getLayoutParams().width = (int) (screenWidth*0.45);
+                holder.articleImage.getLayoutParams().height = (int) (screenWidth*0.45)*9/16;
+            case 1:
+            case 2:
+                holder.articleImage.getLayoutParams().width = (int) (screenWidth*0.45);
+                holder.articleImage.getLayoutParams().height = (int) (screenWidth*0.45)*9/16;
+                holder.articleTitle.setText(articleList.get(i).getTitle());
+                if (articleList.get(i).getImgurl() != null)
+                    articleList.get(i).loadImg(holder.articleImage);
+                if (articleList.get(i).getSource() != null)
+                    holder.articleSource.setText(articleList.get(i).getSource());
+                if (articleList.get(i).getReltime() != null)
+                    holder.articleTime.setText(articleList.get(i).getReltime());
+                if (articleList.get(i).getUrl() != null)
+                    holder.url = articleList.get(i).getUrl().toString();
+                if (articleList.get(i).getMarkup() != null)
+                    holder.markup = articleList.get(i).getMarkup();
+                break;
+            case 4:
+                break;
         }
-        else {
-            //Category header
-            holder.card.setRadius(24);
-            holder.card.setCardElevation(0);
-//            holder.articleImage.setImageResource(0);
-//            holder.articleImage.setVisibility(View.INVISIBLE);
-            holder.articleTitle.setTextSize(28);
-
-            if (articleList.get(holder.index).getMnemonic() != null)
-                holder.mnemonic = articleList.get(holder.index).getMnemonic();
-            else
-                holder.mnemonic = null;
-
-            if (holder.articleBreadcrumb != null) {
-                if (holder.index == 0)
-                    holder.articleBreadcrumb.setText(path);
-                else
-                    holder.articleBreadcrumb.setText(path + " > " + articleList.get(holder.index).getTitle());
-            }
-        }
-        holder.articleTitle.setText(articleList.get(holder.index).getTitle());
-
         //display tags as well?
 //        for (int i = 0; i < articleList.get(index).getTagsLength(); i++) {
 //            TextView textView = new TextView(holder.itemView.getContext());

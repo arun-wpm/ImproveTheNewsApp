@@ -19,8 +19,15 @@ import java.util.Date;
 import static android.content.ContentValues.TAG;
 
 public class Article {
+    //type:
+    //-1: article_card_topic
+    //0: article_card
+    //1: article_card_small_left
+    //2: article_card_small_right
+    //3: article_card_half
+    //4: article_card_footer
+
     URL imgurl;
-//    Bitmap img;
     String title;
     String mnemonic;
     String code;
