@@ -1,9 +1,12 @@
 package com.improvethenews.projecta;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,6 +34,7 @@ import static android.content.ContentValues.TAG;
 public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderViewHolder> {
     private List<Slider> sliderList;
     private SliderViewHolder pieholder;
+    private Context context;
 
     public static class SliderViewHolder extends RecyclerView.ViewHolder {
         CardView card;
@@ -84,6 +88,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
         }
 
         final SliderViewHolder sliderViewHolder = new SliderViewHolder(view);
+        context = parent.getContext();
         return sliderViewHolder;
     }
 
@@ -116,19 +121,29 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
     public void renderPie() {
         List<PieEntry> entries = new ArrayList<>();
         for (int i = 0; i < sliderList.size(); i++) {
-            if (sliderList.get(i).getType() == 1)
+            if (sliderList.get(i).getType() == 1 && sliderList.get(i).getValue() > 0)
                 entries.add(new PieEntry(sliderList.get(i).getValue(), sliderList.get(i).getTitle()));
         }
         PieDataSet set = new PieDataSet(entries, "Topic Distribution");
-//        set.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-//        set.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
         set.setColors(new int[] {R.color.colorPrimaryLight, R.color.colorPrimaryDark}, this.pieholder.card.getContext());
         PieData data = new PieData(set);
+        data.setValueTextSize(12);
+        data.setValueTypeface(ResourcesCompat.getFont(context, R.font.opensans));
         this.pieholder.pieChart.setData(data);
-//        this.pieholder.pieChart.setHoleRadius(50);
+        this.pieholder.pieChart.setHoleColor(android.R.color.transparent);
+        this.pieholder.pieChart.getDescription().setEnabled(false);
         Legend legend = this.pieholder.pieChart.getLegend();
         legend.setEnabled(false);
         this.pieholder.pieChart.invalidate();
+    }
+
+    public void reevaluateValues() {
+        int sum = 0;
+        for (Slider slider : sliderList)
+            sum += slider.getValue();
+        for (Slider slider : sliderList)
+            slider.setValue(slider.getValue()*99/sum);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -137,15 +152,16 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
         int type = holder.getItemViewType();
         holder.index = index;
         if (type != 2)
-            holder.sliderTitle.setText(sliderList.get(index).getTitle());
-        holder.code = sliderList.get(index).getCode();
+            holder.sliderTitle.setText(sliderList.get(holder.index).getTitle());
+        holder.code = sliderList.get(holder.index).getCode();
         if (type == 0 || type == 1) {
-            holder.seekBar.setProgress(sliderList.get(index).getValue());
+            holder.seekBar.setProgress(sliderList.get(holder.index).getValue());
+            Log.d(TAG, "onBindViewHolder: " + sliderList.get(holder.index).getValue());
             holder.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                     if (fromUser == true) {
-                        sliderList.get(index).setValue(progress);
+                        sliderList.get(holder.index).setValue(progress);
                         Log.d(TAG, "onProgressChanged: " + progress);
                         renderPie();
                     }
@@ -158,7 +174,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
 
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
-
+                    reevaluateValues();
                 }
             });
         }
@@ -196,14 +212,14 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
                 params0 = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT,
-                        99 - sliderList.get(index).getUsualvalue()
+                        99 - sliderList.get(holder.index).getUsualvalue()
                 );
-                Log.d(TAG, "onBindViewHolder: " + sliderList.get(index).getUsualvalue());
+                Log.d(TAG, "onBindViewHolder: usual value " + sliderList.get(holder.index).getUsualvalue());
                 holder.view0.setLayoutParams(params0);
                 params1 = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT,
-                        sliderList.get(index).getUsualvalue()
+                        sliderList.get(holder.index).getUsualvalue()
                 );
                 holder.view1.setLayoutParams(params1);
                 break;
