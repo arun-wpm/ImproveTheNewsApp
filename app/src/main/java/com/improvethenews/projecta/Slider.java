@@ -3,6 +3,7 @@ package com.improvethenews.projecta;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ public class Slider {
     int value;
     int usualvalue;
     int type;
+    int color;
 
     Slider(String title, String code, int value, int usualvalue, int type) {
         this.title = title;
@@ -26,6 +28,16 @@ public class Slider {
         this.value = value;
         this.usualvalue = usualvalue;
         this.type = type;
+        this.color = Color.TRANSPARENT;
+    }
+
+    Slider(String title, String code, int value, int usualvalue, int type, int color) {
+        this.title = title;
+        this.code = code;
+        this.value = value;
+        this.usualvalue = usualvalue;
+        this.type = type;
+        this.color = color;
     }
 
     public String getTitle() {
@@ -48,5 +60,8 @@ public class Slider {
     }
     public int getType() {
         return type;
+    }
+    public int getColor() {
+        return color;
     }
 }

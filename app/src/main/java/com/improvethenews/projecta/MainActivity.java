@@ -2,6 +2,7 @@ package com.improvethenews.projecta;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     private FlexboxLayoutManager flm;
     private DisplayMetrics displayMetrics;
     private BottomNavigationView navigation;
+    private BottomSheetBehavior bottomSheetBehavior;
+    private ConstraintLayout sliderBottomSheet;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -81,7 +84,12 @@ public class MainActivity extends AppCompatActivity {
                     searchView.setVisibility(View.GONE);
                     applySliderListChanges();
                     getTopicAndSliderList(topic, depth);
-                    rv.setAdapter(sliderAdapter);
+                    srv.setAdapter(sliderAdapter);
+                    srv.setBackgroundResource(R.color.colorAccent);
+                    if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    else
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                     return true;
             }
             return false;
@@ -129,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         topicList = new ArrayList<Topic>();
         sliderList = new ArrayList<Slider>();
         biasSliderList = new ArrayList<Slider>();
-        biasSliderList.add(new Slider("Bias Sliders", "", 0, 0, -1));
+        biasSliderList.add(new Slider("Bias Sliders", "", 0, 0, -2));
         for (int i = 0; i < defaultSliders.length; i++) {
             biasSliderList.add(new Slider(defaultSliders[i][0], defaultSliders[i][1], sp.getInt(defaultSliders[i][1], Integer.parseInt(defaultSliders[i][2])), Integer.parseInt(defaultSliders[i][2]), 0));
         }
@@ -143,7 +151,9 @@ public class MainActivity extends AppCompatActivity {
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String readLine;
         try {
+            int cnt = 0;
             while ((readLine = br.readLine()) != null) {
+                cnt++;
                 String[] row = readLine.split("\t");
                 if (!row[1].equals("0")) {
                     topicList.add(new Topic(row[2], row[0], Integer.parseInt(row[4])));
@@ -153,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else if (inRange && Integer.parseInt(row[4]) == depth + 1) {
                         int pop = Double.valueOf(Double.parseDouble(row[5])/base*99).intValue();
-                        sliderList.add(new Slider(row[2], row[6], sp.getInt(row[6], pop), pop, 1));
+                        sliderList.add(new Slider(row[2], row[6], sp.getInt(row[6], pop), pop, 1, Color.rgb((cnt%6)*51, (cnt%6)*51, (cnt%6)*51)));
                         Log.d("TAG", "getTopicList: " + row[2] + row[6] + pop);
                     }
                     else if (inRange && Integer.parseInt(row[4]) == depth)
@@ -240,13 +250,15 @@ public class MainActivity extends AppCompatActivity {
         sliderAdapter = new SliderAdapter(sliderList);
         biasSliderAdapter = new SliderAdapter(biasSliderList);
 
-        ConstraintLayout sliderBottomSheet = findViewById(R.id.bottom_sheet);
-        final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(sliderBottomSheet);
+        sliderBottomSheet = findViewById(R.id.bottom_sheet);
+        bottomSheetBehavior = BottomSheetBehavior.from(sliderBottomSheet);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                srv.setAdapter(biasSliderAdapter);
+                srv.setBackgroundColor(Color.TRANSPARENT);
                 if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 else

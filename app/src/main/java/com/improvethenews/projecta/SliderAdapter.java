@@ -1,20 +1,14 @@
 package com.improvethenews.projecta;
 
-import android.app.ActionBar;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -24,9 +18,9 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -40,7 +34,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
         CardView card;
         TextView sliderTitle;
         SeekBar seekBar;
-        View view0, view1;
+        View view0, view1, color;
         String code;
         PieChart pieChart;
         int index;
@@ -52,6 +46,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
             this.seekBar = (SeekBar) itemView.findViewById(R.id.seekBar);
             this.view0 = (View) itemView.findViewById(R.id.view0);
             this.view1 = (View) itemView.findViewById(R.id.view1);
+            this.color = (View) itemView.findViewById(R.id.slider_color);
             this.pieChart = (PieChart) itemView.findViewById(R.id.chart);
         }
     }
@@ -72,6 +67,9 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
     public SliderViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         switch (viewType) {
+            case -2:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.slider_card_topic, parent, false);
+                break;
             case -1:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.slider_card_topic, parent, false);
                 break;
@@ -82,8 +80,8 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.slider_pie, parent, false);
                 break;
             default:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.slider_card, parent, false);
-//                view.setVisibility(View.GONE);
+                //case 1:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.slider_card_small, parent, false);
                 break;
         }
 
@@ -110,24 +108,29 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
     public void onViewDetachedFromWindow(SliderViewHolder holder) {
         int type = holder.getItemViewType();
         if (type == 0 || type == 1) {
-            holder.seekBar.getProgressDrawable().clearColorFilter();
-            holder.seekBar.getThumb().clearColorFilter();
             Log.d(TAG, "onViewDetachedFromWindow" + holder.index);
         }
     }
 
     public void renderPie() {
         List<PieEntry> entries = new ArrayList<>();
+        List<Integer> colors = new ArrayList<>();
         for (int i = 0; i < sliderList.size(); i++) {
-            if (sliderList.get(i).getType() == 1 && sliderList.get(i).getValue() > 0)
+            if (sliderList.get(i).getType() == 1 && sliderList.get(i).getValue() > 0) {
                 entries.add(new PieEntry(sliderList.get(i).getValue(), sliderList.get(i).getTitle()));
+                colors.add(sliderList.get(i).getColor());
+            }
         }
         PieDataSet set = new PieDataSet(entries, "Topic Distribution");
-        set.setColors(new int[] {R.color.colorPrimaryLight, R.color.colorPrimaryDark}, this.pieholder.card.getContext());
+        set.setColors(colors);
+        set.setSliceSpace(2);
         PieData data = new PieData(set);
+        data.setDrawValues(false);
         data.setValueTextSize(12);
         data.setValueTypeface(ResourcesCompat.getFont(context, R.font.opensans));
         this.pieholder.pieChart.setData(data);
+        this.pieholder.pieChart.setDrawEntryLabels(false);
+        this.pieholder.pieChart.setDrawSliceText(false);
         this.pieholder.pieChart.setHoleColor(android.R.color.transparent);
         this.pieholder.pieChart.getDescription().setEnabled(false);
         Legend legend = this.pieholder.pieChart.getLegend();
@@ -181,8 +184,12 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
 
         LinearLayout.LayoutParams params0, params1;
         switch (type) {
+            case -2:
+                //Category header "Bias Sliders"
+                break;
             case -1:
-                //Category header
+                //Category header "Your ... feed"
+                holder.sliderTitle.setTextColor(Color.WHITE);
                 break;
             case 0:
                 break;
@@ -206,6 +213,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
                         sliderList.get(holder.index).getUsualvalue()
                 );
                 holder.view1.setLayoutParams(params1);
+                holder.color.setBackgroundColor(sliderList.get(holder.index).getColor());
                 break;
         }
     }

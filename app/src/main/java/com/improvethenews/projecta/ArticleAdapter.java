@@ -11,6 +11,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,6 +39,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         TextView articleSource;
         TextView articleTime;
 //        FlexboxLayout articleTags;
+        ImageButton shareButton;
         String url = "";
         JSONArray markup = null;
         String mnemonic = "";
@@ -53,6 +55,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
             this.articleSource = (TextView) itemView.findViewById(R.id.article_source);
             this.articleTime = (TextView) itemView.findViewById(R.id.article_time);
 //            this.articleTags = (FlexboxLayout) itemView.findViewById(R.id.tags);
+            this.shareButton = (ImageButton) itemView.findViewById(R.id.shareButton);
             this.itemView = itemView;
         }
     }
@@ -124,7 +127,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
                     intent.putExtra("Depth", String.valueOf(depth + 1));
                     v.getContext().startActivity(intent);
                 }
-                else {
+                else if (articleViewHolder.getItemViewType() != 4) {
 //                    Intent intent = new Intent(v.getContext(), WebViewActivity.class);
                     Intent intent = new Intent(v.getContext(), AnnotatedWebViewActivity.class);
                     String url = articleViewHolder.url;
@@ -182,12 +185,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
                     holder.markup = articleList.get(i).getMarkup();
                 break;
             case 3:
-                holder.card.getLayoutParams().width = (int) (screenWidth*0.45);
-                holder.articleImage.getLayoutParams().height = (int) (screenWidth*0.45)*9/16;
+                holder.card.getLayoutParams().width = (int) (screenWidth*0.5);
+                holder.articleImage.getLayoutParams().height = (int) (screenWidth*0.5)*9/16;
             case 1:
             case 2:
-                holder.articleImage.getLayoutParams().width = (int) (screenWidth*0.45);
-                holder.articleImage.getLayoutParams().height = (int) (screenWidth*0.45)*9/16;
+                holder.articleImage.getLayoutParams().width = (int) (screenWidth*0.5);
+                holder.articleImage.getLayoutParams().height = (int) (screenWidth*0.5)*9/16;
                 holder.articleTitle.setText(articleList.get(i).getTitle());
                 if (articleList.get(i).getImgurl() != null)
                     articleList.get(i).loadImg(holder.articleImage);
@@ -201,6 +204,18 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
                     holder.markup = articleList.get(i).getMarkup();
                 break;
             case 4:
+                holder.shareButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, "http://www.improvethenews.org/");
+                        sendIntent.setType("text/html");
+
+                        Intent shareIntent = Intent.createChooser(sendIntent, null);
+                        v.getContext().startActivity(Intent.createChooser(shareIntent, null));
+                    }
+                });
                 break;
         }
         //display tags as well?
