@@ -250,19 +250,38 @@ public class MainActivity extends AppCompatActivity {
         sliderAdapter = new SliderAdapter(sliderList);
         biasSliderAdapter = new SliderAdapter(biasSliderList);
 
+        final View shades = findViewById(R.id.shades);
         sliderBottomSheet = findViewById(R.id.bottom_sheet);
         bottomSheetBehavior = BottomSheetBehavior.from(sliderBottomSheet);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_HIDDEN)
+                    shades.setAlpha(0);
+                else
+                    shades.setAlpha(0.5f);
+            }
+
+            @Override
+            public void onSlide(@NonNull View view, float v) {
+                //TODO: mess with this later when free
+            }
+        });
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 srv.setAdapter(biasSliderAdapter);
                 srv.setBackgroundColor(Color.TRANSPARENT);
-                if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)
+                if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                else
+                    shades.setVisibility(View.VISIBLE);
+                }
+                else {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                    shades.setVisibility(View.GONE);
+                }
             }
         });
 
