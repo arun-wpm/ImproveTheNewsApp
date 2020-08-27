@@ -51,6 +51,8 @@
         android:alpha="0"
         android:background="@color/black" />
 
-    <include layout="@layout/slider_bottom_sheet" />
+    <include layout="@layout/topic_slider_bottom_sheet" />
+
+    <include layout="@layout/bias_slider_bottom_sheet" />
 
 </android.support.design.widget.CoordinatorLayout>

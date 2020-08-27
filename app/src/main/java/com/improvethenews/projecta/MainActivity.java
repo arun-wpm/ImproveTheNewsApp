@@ -8,12 +8,10 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -23,15 +21,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.EditorInfo;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import com.google.android.flexbox.FlexboxLayoutManager;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -43,27 +37,25 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.Random;
 
-import static android.support.design.widget.BottomSheetBehavior.from;
-
 public class MainActivity extends AppCompatActivity {
 
     private ArticleAdapter articleAdapter;
-    private SliderAdapter sliderAdapter, biasSliderAdapter;
+    private SliderAdapter topicSliderAdapter, biasSliderAdapter;
     private TopicAdapter topicAdapter;
-    private ArrayList<Slider> sliderList, biasSliderList;
+    private ArrayList<Slider> topicSliderList, biasSliderList;
     private ArrayList<Article> articleList;
     private ArrayList<Topic> topicList;
     private String topic, mnemonic, settings, path, depth;
-    private RecyclerView rv, srv;
+    private RecyclerView rv, bsrv, tsrv;
     private SharedPreferences sp;
     private MenuItem searchItem;
     private SearchView searchView;
-    private LinearLayoutManager llm;
+    private LinearLayoutManager bllm, sllm;
     private FlexboxLayoutManager flm;
     private DisplayMetrics displayMetrics;
     private BottomNavigationView navigation;
-    private BottomSheetBehavior bottomSheetBehavior;
-    private ConstraintLayout sliderBottomSheet;
+    private BottomSheetBehavior biasBottomSheetBehavior, topicBottomSheetBehavior;
+    private ConstraintLayout biasSliderBottomSheet, topicSliderBottomSheet;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -84,12 +76,12 @@ public class MainActivity extends AppCompatActivity {
                     searchView.setVisibility(View.GONE);
                     applySliderListChanges();
                     getTopicAndSliderList(topic, depth);
-                    srv.setAdapter(sliderAdapter);
-                    srv.setBackgroundResource(R.color.colorAccent);
-                    if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)
-                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+//                    tsrv.setAdapter(topicSliderAdapter);
+//                    tsrv.setBackgroundResource(R.color.colorAccent);
+                    if (topicBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)
+                        topicBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                     else
-                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                        topicBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                     return true;
             }
             return false;
@@ -135,15 +127,15 @@ public class MainActivity extends AppCompatActivity {
     private void getTopicAndSliderList(String topic, String depthString) {
         //mnemonic, to display, official name, "lowercase" name, depth, popularity, code
         topicList = new ArrayList<Topic>();
-        sliderList = new ArrayList<Slider>();
+        topicSliderList = new ArrayList<Slider>();
         biasSliderList = new ArrayList<Slider>();
         biasSliderList.add(new Slider("Bias Sliders", "", 0, 0, -2));
         for (int i = 0; i < defaultSliders.length; i++) {
             biasSliderList.add(new Slider(defaultSliders[i][0], defaultSliders[i][1], sp.getInt(defaultSliders[i][1], Integer.parseInt(defaultSliders[i][2])), Integer.parseInt(defaultSliders[i][2]), 0));
         }
 
-        sliderList.add(new Slider("Your " + mnemonic + " Feed", "", 0, 0, -1));
-        sliderList.add(new Slider("", "", 0, 0, 2));
+        topicSliderList.add(new Slider("Your " + mnemonic + " Feed", "", 0, 0, -1));
+        topicSliderList.add(new Slider("", "", 0, 0, 2));
         boolean inRange = false;
         int depth = Integer.valueOf(depthString);
         double base = 1.f;
@@ -163,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else if (inRange && Integer.parseInt(row[4]) == depth + 1) {
                         int pop = Double.valueOf(Double.parseDouble(row[5])/base*99).intValue();
-                        sliderList.add(new Slider(row[2], row[6], sp.getInt(row[6], pop), pop, 1, Color.rgb((cnt%6)*51, (cnt%6)*51, (cnt%6)*51)));
+                        topicSliderList.add(new Slider(row[2], row[6], sp.getInt(row[6], pop), pop, 1, Color.rgb((cnt%6)*51, (cnt%6)*51, (cnt%6)*51)));
                         Log.d("TAG", "getTopicList: " + row[2] + row[6] + pop);
                     }
                     else if (inRange && Integer.parseInt(row[4]) == depth)
@@ -186,11 +178,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void applySliderListChanges() {
         SharedPreferences.Editor editor = sp.edit();
-        for (int i = 0; i < sliderList.size(); i++) {
-            sliderList.set(i, sliderAdapter.getItem(i));
-            if (sliderList.get(i).getCode().length() == 2) {
-                editor.putInt(sliderList.get(i).getCode(), sliderList.get(i).getValue());
-                Log.d("TAG", "applySliderListChanges: " + sliderList.get(i).getCode() + sliderList.get(i).getValue());
+        for (int i = 0; i < biasSliderList.size(); i++) {
+            biasSliderList.set(i, topicSliderAdapter.getItem(i));
+            if (biasSliderList.get(i).getCode().length() == 2) {
+                editor.putInt(biasSliderList.get(i).getCode(), biasSliderList.get(i).getValue());
+                Log.d("TAG", "applySliderListChanges: " + biasSliderList.get(i).getCode() + biasSliderList.get(i).getValue());
+            }
+        }
+        for (int i = 0; i < topicSliderList.size(); i++) {
+            topicSliderList.set(i, topicSliderAdapter.getItem(i));
+            if (topicSliderList.get(i).getCode().length() == 2) {
+                editor.putInt(topicSliderList.get(i).getCode(), topicSliderList.get(i).getValue());
+                Log.d("TAG", "applySliderListChanges: " + topicSliderList.get(i).getCode() + topicSliderList.get(i).getValue());
             }
         }
         editor.commit();
@@ -235,26 +234,48 @@ public class MainActivity extends AppCompatActivity {
         flm = new FlexboxLayoutManager(this);
         rv.setLayoutManager(flm);
 
-        srv = (RecyclerView) findViewById(R.id.slider_recycler);
-        srv.setHasFixedSize(true);
-        llm = new LinearLayoutManager(this);
-        srv.setLayoutManager(llm);
+        bsrv = (RecyclerView) findViewById(R.id.bias_slider_recycler);
+        bsrv.setHasFixedSize(true);
+        bllm = new LinearLayoutManager(this);
+        bsrv.setLayoutManager(bllm);
+
+        tsrv = (RecyclerView) findViewById(R.id.topic_slider_recycler);
+        tsrv.setHasFixedSize(true);
+        sllm = new LinearLayoutManager(this);
+        tsrv.setLayoutManager(sllm);
 
         getTopicAndSliderList(topic, depth);
         topicAdapter = new TopicAdapter(topicList);
         getArticleList(topic);
         mnemonic = articleList.get(0).getTitle();
-        sliderList.get(0).setTitle("Your " + mnemonic + " Feed");
+        topicSliderList.get(0).setTitle("Your " + mnemonic + " Feed");
         path = path + mnemonic;
         articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels);
-        sliderAdapter = new SliderAdapter(sliderList);
+        topicSliderAdapter = new SliderAdapter(topicSliderList);
         biasSliderAdapter = new SliderAdapter(biasSliderList);
 
         final View shades = findViewById(R.id.shades);
-        sliderBottomSheet = findViewById(R.id.bottom_sheet);
-        bottomSheetBehavior = BottomSheetBehavior.from(sliderBottomSheet);
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+        biasSliderBottomSheet = findViewById(R.id.bias_slider_bottom_sheet);
+        biasBottomSheetBehavior = BottomSheetBehavior.from(biasSliderBottomSheet);
+        biasBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        biasBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_HIDDEN)
+                    shades.setAlpha(0);
+                else
+                    shades.setAlpha(0.5f);
+            }
+
+            @Override
+            public void onSlide(@NonNull View view, float v) {
+                //TODO: mess with this later when free
+            }
+        });
+        topicSliderBottomSheet = findViewById(R.id.topic_slider_bottom_sheet);
+        topicBottomSheetBehavior = BottomSheetBehavior.from(topicSliderBottomSheet);
+        topicBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        topicBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
                 if (newState == BottomSheetBehavior.STATE_HIDDEN)
@@ -272,16 +293,13 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                srv.setAdapter(biasSliderAdapter);
-                srv.setBackgroundColor(Color.TRANSPARENT);
-                if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    shades.setVisibility(View.VISIBLE);
-                }
-                else {
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                    shades.setVisibility(View.GONE);
-                }
+//                srv.setAdapter(biasSliderAdapter);
+//                Log.d("TAG", "onClick: why doesn't slider list change");
+//                srv.setBackgroundColor(Color.TRANSPARENT);
+                if (biasBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)
+                    biasBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                else
+                    biasBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
             }
         });
 
@@ -290,7 +308,8 @@ public class MainActivity extends AppCompatActivity {
 
         //default: show articles
         rv.setAdapter(articleAdapter);
-        srv.setAdapter(biasSliderAdapter);
+        bsrv.setAdapter(biasSliderAdapter);
+        tsrv.setAdapter(topicSliderAdapter);
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
