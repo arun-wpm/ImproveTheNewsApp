@@ -78,6 +78,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     @Override
     public int getItemViewType(int position) {
         //type:
+        //-2: article_card_more
         //-1: article_card_topic
         //0: article_card
         //1: article_card_small_left
@@ -91,6 +92,9 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     public ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         switch (viewType) {
+            case -2:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_more, parent, false);
+                break;
             case -1:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_topic, parent, false);
                 break;
@@ -118,7 +122,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (articleViewHolder.getItemViewType() == -1) {
+                if (articleViewHolder.getItemViewType() < 0) {
                     //Links to another topic, not a news article
                     Intent intent = new Intent(v.getContext(), MainActivity.class);
                     String mnemonic = articleViewHolder.mnemonic;
@@ -159,6 +163,9 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         int i = holder.getAdapterPosition();
         int px;
         switch (type) {
+            case -2:
+                holder.articleTitle.setText("Read more " + articleList.get(i).getTitle() + " news");
+                break;
             case -1:
                 holder.articleTitle.setText(articleList.get(i).getTitle());
                 if (articleList.get(i).getMnemonic() != null)

@@ -54,6 +54,7 @@ public class ArticleExtractor {
 
     public void pull() {
         //type:
+        //-2: article_card_more
         //-1: article_card_topic
         //0: article_card
         //1: article_card_small_left
@@ -80,6 +81,7 @@ public class ArticleExtractor {
                             Log.d(TAG, "run: " + articles.getJSONArray(j));
                             articleList.add(parseJSON(articles.getJSONArray(j), (i == 0)?0:(j < 2)?i%2+1:3));
                         }
+                        articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(5), topic.getDouble(4),"", "", null, -2, null));
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

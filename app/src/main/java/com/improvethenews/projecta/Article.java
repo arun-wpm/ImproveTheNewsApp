@@ -20,6 +20,7 @@ import static android.content.ContentValues.TAG;
 
 public class Article {
     //type:
+    //-2: article_card_more
     //-1: article_card_topic
     //0: article_card
     //1: article_card_small_left
