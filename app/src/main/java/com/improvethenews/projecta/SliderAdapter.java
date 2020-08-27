@@ -32,7 +32,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
 
     public static class SliderViewHolder extends RecyclerView.ViewHolder {
         CardView card;
-        TextView sliderTitle;
+        TextView sliderTitle, startText, endText;
         SeekBar seekBar;
         View view0, view1, color;
         String code;
@@ -43,6 +43,8 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
             super(itemView);
             this.card = (CardView) itemView.findViewById(R.id.card);
             this.sliderTitle = (TextView) itemView.findViewById(R.id.slider_title);
+            this.startText = (TextView) itemView.findViewById(R.id.startText);
+            this.endText = (TextView) itemView.findViewById(R.id.endText);
             this.seekBar = (SeekBar) itemView.findViewById(R.id.seekBar);
             this.view0 = (View) itemView.findViewById(R.id.view0);
             this.view1 = (View) itemView.findViewById(R.id.view1);
@@ -130,7 +132,6 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
         data.setValueTypeface(ResourcesCompat.getFont(context, R.font.opensans));
         this.pieholder.pieChart.setData(data);
         this.pieholder.pieChart.setDrawEntryLabels(false);
-        this.pieholder.pieChart.setDrawSliceText(false);
         this.pieholder.pieChart.setHoleColor(android.R.color.transparent);
         this.pieholder.pieChart.getDescription().setEnabled(false);
         Legend legend = this.pieholder.pieChart.getLegend();
@@ -192,6 +193,8 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
                 holder.sliderTitle.setTextColor(Color.WHITE);
                 break;
             case 0:
+                holder.startText.setText(sliderList.get(holder.index).getStart());
+                holder.endText.setText(sliderList.get(holder.index).getEnd());
                 break;
             case 2:
                 //Pie chart

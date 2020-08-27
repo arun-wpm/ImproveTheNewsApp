@@ -123,7 +123,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    String[][] defaultSliders = {{"Left-Right", "LR", "50"}, {"Pro-establishment", "PE", "50"}, {"Nuance", "NU", "70"}, {"Depth", "DE", "70"}, {"Shelf-life", "SL", "70"}, {"Recent", "RE", "70"}};
+    String[][] defaultSliders = {{"Political Stance", "LR", "50", "Left", "Right"},
+            {"Establishment Stance", "PE", "50", "Critical", "Pro"},
+            {"Writing Style", "NU", "70", "Crude", "Nuanced"},
+            {"Depth", "DE", "70", "Breezy", "Detailed"},
+            {"Shelf-Life", "SL", "70", "Short", "Long"},
+            {"Recency", "RE", "70", "Evergreen", "Latest"}};
     private void getTopicAndSliderList(String topic, String depthString) {
         //mnemonic, to display, official name, "lowercase" name, depth, popularity, code
         topicList = new ArrayList<Topic>();
@@ -131,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         biasSliderList = new ArrayList<Slider>();
         biasSliderList.add(new Slider("Bias Sliders", "", 0, 0, -2));
         for (int i = 0; i < defaultSliders.length; i++) {
-            biasSliderList.add(new Slider(defaultSliders[i][0], defaultSliders[i][1], sp.getInt(defaultSliders[i][1], Integer.parseInt(defaultSliders[i][2])), Integer.parseInt(defaultSliders[i][2]), 0));
+            biasSliderList.add(new Slider(defaultSliders[i][0], defaultSliders[i][1], sp.getInt(defaultSliders[i][1], Integer.parseInt(defaultSliders[i][2])), Integer.parseInt(defaultSliders[i][2]), 0, defaultSliders[i][3], defaultSliders[i][4]));
         }
 
         topicSliderList.add(new Slider("Your " + mnemonic + " Feed", "", 0, 0, -1));

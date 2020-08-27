@@ -20,6 +20,7 @@ public class Slider {
     int value;
     int usualvalue;
     int type;
+    String start, end;
     int color;
 
     Slider(String title, String code, int value, int usualvalue, int type) {
@@ -29,6 +30,19 @@ public class Slider {
         this.usualvalue = usualvalue;
         this.type = type;
         this.color = Color.TRANSPARENT;
+        this.start = "";
+        this.end = "";
+    }
+
+    Slider(String title, String code, int value, int usualvalue, int type, String start, String end) {
+        this.title = title;
+        this.code = code;
+        this.value = value;
+        this.usualvalue = usualvalue;
+        this.type = type;
+        this.color = Color.TRANSPARENT;
+        this.start = start;
+        this.end = end;
     }
 
     Slider(String title, String code, int value, int usualvalue, int type, int color) {
@@ -38,6 +52,8 @@ public class Slider {
         this.usualvalue = usualvalue;
         this.type = type;
         this.color = color;
+        this.start = "";
+        this.end = "";
     }
 
     public String getTitle() {
@@ -63,5 +79,11 @@ public class Slider {
     }
     public int getColor() {
         return color;
+    }
+    public String getStart() {
+        return start;
+    }
+    public String getEnd() {
+        return end;
     }
 }
