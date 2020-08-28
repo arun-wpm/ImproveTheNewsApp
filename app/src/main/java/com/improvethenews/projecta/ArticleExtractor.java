@@ -54,6 +54,8 @@ public class ArticleExtractor {
 
     public void pull() {
         //type:
+        //-4: article_card_more but iself
+        //-3: article_card_topic but itself
         //-2: article_card_more
         //-1: article_card_topic
         //0: article_card
@@ -74,14 +76,19 @@ public class ArticleExtractor {
                         JSONArray topic = subarray.getJSONArray(0);
                         JSONArray articles = subarray.getJSONArray(1);
                         Log.d(TAG, "run: " + articles);
-                        Article a = new Article(null, topic.getString(2), topic.getString(0), topic.getString(5), topic.getDouble(4),"", "", null, -1, null);
-                        articleList.add(a);
+                        if (i == 0)
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(5), topic.getDouble(4),"", "", null, -3, null));
+                        else
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(5), topic.getDouble(4),"", "", null, -1, null));
                         for (int j = 0; j < articles.length(); j++) {
                             //for each article
                             Log.d(TAG, "run: " + articles.getJSONArray(j));
                             articleList.add(parseJSON(articles.getJSONArray(j), (i == 0)?0:(j < 2)?i%2+1:3));
                         }
-                        articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(5), topic.getDouble(4),"", "", null, -2, null));
+                        if (i == 0)
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(5), topic.getDouble(4),"", "", null, -4, null));
+                        else
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(5), topic.getDouble(4),"", "", null, -2, null));
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

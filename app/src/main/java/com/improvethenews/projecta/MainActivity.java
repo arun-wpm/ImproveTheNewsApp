@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Slider> topicSliderList, biasSliderList;
     private ArrayList<Article> articleList;
     private ArrayList<Topic> topicList;
-    private String topic, mnemonic, settings, path, depth;
+    private String topic, title, settings, path, depth;
     private RecyclerView rv, bsrv, tsrv;
     private SharedPreferences sp;
     private MenuItem searchItem;
@@ -147,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             biasSliderList.add(new Slider(defaultSliders[i][0], defaultSliders[i][1], sp.getInt(defaultSliders[i][1], Integer.parseInt(defaultSliders[i][2])), Integer.parseInt(defaultSliders[i][2]), 0, defaultSliders[i][3], defaultSliders[i][4]));
         }
 
-        topicSliderList.add(new Slider("Your " + mnemonic + " Feed", "", 0, 0, -1));
+        topicSliderList.add(new Slider("Your " + title + " Feed", "", 0, 0, -1));
         topicSliderList.add(new Slider("", "", 0, 0, 2));
         boolean inRange = false;
         int depth = Integer.valueOf(depthString);
@@ -241,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
 
         path = getIntent().getStringExtra("Path");
         if (path == null)
-            path = "";
+            path = "Headlines";
 
         depth = getIntent().getStringExtra("Depth");
         if (depth == null)
@@ -265,9 +264,9 @@ public class MainActivity extends AppCompatActivity {
         getTopicAndSliderList(topic, depth);
         topicAdapter = new TopicAdapter(topicList);
         getArticleList(topic);
-        mnemonic = articleList.get(0).getTitle();
-        topicSliderList.get(0).setTitle("Your " + mnemonic + " Feed");
-        path = path + mnemonic;
+        title = articleList.get(0).getTitle();
+        topicSliderList.get(0).setTitle("Your " + title + " Feed");
+//        path = path + title;
         articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels, showTopicSliders);
         topicSliderAdapter = new SliderAdapter(topicSliderList);
         biasSliderAdapter = new SliderAdapter(biasSliderList);

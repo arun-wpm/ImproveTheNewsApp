@@ -80,6 +80,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     @Override
     public int getItemViewType(int position) {
         //type:
+        //-4: article_card_more but iself
+        //-3: article_card_topic but itself
         //-2: article_card_more
         //-1: article_card_topic
         //0: article_card
@@ -94,6 +96,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     public ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         switch (viewType) {
+            case -4:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_more, parent, false);
+                break;
+            case -3:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_topic, parent, false);
+                break;
             case -2:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_more, parent, false);
                 break;
@@ -124,16 +132,26 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (articleViewHolder.getItemViewType() < 0) {
-                    //Links to another topic, not a news article
+                if (articleViewHolder.getItemViewType() <= -3) {
+                    //Links to the same topic
+                    Intent intent = new Intent(v.getContext(), MainActivity.class);
+                    String mnemonic = articleViewHolder.mnemonic;
+                    intent.putExtra("Mnemonic", mnemonic + ".A25");
+                    intent.putExtra("Path", path);
+                    intent.putExtra("Depth", String.valueOf(depth));
+                    v.getContext().startActivity(intent);
+                }
+                else if (articleViewHolder.getItemViewType() < 0) {
+                    //Links to another topic
                     Intent intent = new Intent(v.getContext(), MainActivity.class);
                     String mnemonic = articleViewHolder.mnemonic;
                     intent.putExtra("Mnemonic", mnemonic);
-                    intent.putExtra("Path", path + " > ");
+                    intent.putExtra("Path", path + " > " + articleList.get(articleViewHolder.getAdapterPosition()).getTitle());
                     intent.putExtra("Depth", String.valueOf(depth + 1));
                     v.getContext().startActivity(intent);
                 }
                 else if (articleViewHolder.getItemViewType() != 4) {
+                    //Links to an article
 //                    Intent intent = new Intent(v.getContext(), WebViewActivity.class);
                     Intent intent = new Intent(v.getContext(), AnnotatedWebViewActivity.class);
                     String url = articleViewHolder.url;
@@ -165,11 +183,13 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         int i = holder.getAdapterPosition();
         int px;
         switch (type) {
+            case -4:
             case -2:
                 holder.articleTitle.setText("Read more " + articleList.get(i).getTitle() + " news");
                 if (articleList.get(i).getMnemonic() != null)
                     holder.mnemonic = articleList.get(i).getMnemonic();
                 break;
+            case -3:
             case -1:
                 holder.articleTitle.setText(articleList.get(i).getTitle());
                 if (articleList.get(i).getMnemonic() != null)

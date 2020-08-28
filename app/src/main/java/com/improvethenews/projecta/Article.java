@@ -20,6 +20,8 @@ import static android.content.ContentValues.TAG;
 
 public class Article {
     //type:
+    //-4: article_card_more but iself
+    //-3: article_card_topic but itself
     //-2: article_card_more
     //-1: article_card_topic
     //0: article_card
