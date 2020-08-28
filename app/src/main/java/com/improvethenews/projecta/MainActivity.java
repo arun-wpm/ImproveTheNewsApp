@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
     private void applySliderListChanges() {
         SharedPreferences.Editor editor = sp.edit();
         for (int i = 0; i < biasSliderList.size(); i++) {
-            biasSliderList.set(i, topicSliderAdapter.getItem(i));
+            biasSliderList.set(i, biasSliderAdapter.getItem(i));
             if (biasSliderList.get(i).getCode().length() == 2) {
                 editor.putInt(biasSliderList.get(i).getCode(), biasSliderList.get(i).getValue());
                 Log.d("TAG", "applySliderListChanges: " + biasSliderList.get(i).getCode() + biasSliderList.get(i).getValue());

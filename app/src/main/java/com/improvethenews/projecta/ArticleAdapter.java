@@ -165,6 +165,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         switch (type) {
             case -2:
                 holder.articleTitle.setText("Read more " + articleList.get(i).getTitle() + " news");
+                if (articleList.get(i).getMnemonic() != null)
+                    holder.mnemonic = articleList.get(i).getMnemonic();
                 break;
             case -1:
                 holder.articleTitle.setText(articleList.get(i).getTitle());

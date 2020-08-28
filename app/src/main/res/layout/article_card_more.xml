@@ -18,17 +18,17 @@
             android:id="@+id/article_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
             android:textColor="@color/colorAccent"
-            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
             tools:text="@tools:sample/lorem" />
 
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="?android:attr/listDivider"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp" />
+            android:background="?android:attr/listDivider" />
 
     </LinearLayout>
 
