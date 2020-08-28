@@ -78,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    };
 
+    public void updateArticles() {
+        applySliderListChanges();
+        getArticleList(topic);
+        //TODO: improve performance
+        articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels, showTopicSliders);
+        rv.setAdapter(articleAdapter);
+    }
+
     private void showTopicsScreen() {
         searchItem.setVisible(true);
         searchView.setVisibility(View.VISIBLE);
