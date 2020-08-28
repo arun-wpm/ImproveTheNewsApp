@@ -30,6 +30,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     private String from, path;
     private int depth;
     private int screenHeight, screenWidth;
+    private ImageView.OnClickListener listener;
 
     public static class ArticleViewHolder extends RecyclerView.ViewHolder {
         CardView card;
@@ -40,11 +41,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         TextView articleTime;
 //        FlexboxLayout articleTags;
         ImageButton shareButton;
+        ImageView articlePie;
         String url = "";
         JSONArray markup = null;
         String mnemonic = "";
         View itemView;
-//        Article.ArticleAsync articleAsync = null;
 
         public ArticleViewHolder(View itemView) {
             super(itemView);
@@ -56,12 +57,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
             this.articleTime = (TextView) itemView.findViewById(R.id.article_time);
 //            this.articleTags = (FlexboxLayout) itemView.findViewById(R.id.tags);
             this.shareButton = (ImageButton) itemView.findViewById(R.id.shareButton);
+            this.articlePie = (ImageView) itemView.findViewById(R.id.article_pie);
             this.itemView = itemView;
         }
     }
 
-    public ArticleAdapter(List<Article> articleList, String from, String path, String depth, int screenHeight, int screenWidth) {
-//        this.articleList = articleList.subList(1, articleList.size());
+    public ArticleAdapter(List<Article> articleList, String from, String path, String depth, int screenHeight, int screenWidth, ImageView.OnClickListener listener) {
         this.articleList = articleList;
         try {
             this.articleList.add(new Article(null, "Improve the News", null, "",0,"", "", new URL("http://www.improvethenews.org/index.php/faq/"), 4, null));
@@ -73,6 +74,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         this.depth = Integer.valueOf(depth);
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
+        this.listener = listener;
     }
 
     @Override
@@ -178,6 +180,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
                     else
                         holder.articleBreadcrumb.setText(path + " > " + articleList.get(i).getTitle());
                 }
+                holder.articlePie.setOnClickListener(listener);
                 break;
             case 0:
                 holder.articleImage.getLayoutParams().height = screenWidth*9/16;

@@ -22,6 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ImageView;
 
 import com.google.android.flexbox.FlexboxLayoutManager;
 
@@ -53,48 +54,53 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayoutManager bllm, sllm;
     private FlexboxLayoutManager flm;
     private DisplayMetrics displayMetrics;
-    private BottomNavigationView navigation;
     private BottomSheetBehavior biasBottomSheetBehavior, topicBottomSheetBehavior;
     private ConstraintLayout biasSliderBottomSheet, topicSliderBottomSheet;
+    private FloatingActionButton fab;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_news:
-                    searchItem.setVisible(true);
-                    searchView.setVisibility(View.VISIBLE);
-                    applySliderListChanges();
-                    getArticleList(topic);
-                    articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels);
-                    rv.setAdapter(articleAdapter);
-                    return true;
-                case R.id.navigation_sliders:
-                    searchItem.setVisible(false);
-                    searchView.setVisibility(View.GONE);
-                    applySliderListChanges();
-                    getTopicAndSliderList(topic, depth);
-//                    tsrv.setAdapter(topicSliderAdapter);
-//                    tsrv.setBackgroundResource(R.color.colorAccent);
-                    if (topicBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)
-                        topicBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    else
-                        topicBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                    return true;
-            }
-            return false;
-        }
-    };
+//    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+//            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+//
+//        @Override
+//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//            switch (item.getItemId()) {
+//                case R.id.navigation_news:
+//                    searchItem.setVisible(true);
+//                    searchView.setVisibility(View.VISIBLE);
+//                    applySliderListChanges();
+//                    getArticleList(topic);
+//                    articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels);
+//                    rv.setAdapter(articleAdapter);
+//                    return true;
+//                case R.id.navigation_sliders:
+//                    return true;
+//            }
+//            return false;
+//        }
+//    };
 
     private void showTopicsScreen() {
         searchItem.setVisible(true);
         searchView.setVisibility(View.VISIBLE);
+        fab.hide();
         applySliderListChanges();
         topicAdapter = new TopicAdapter(topicList);
         rv.setAdapter(topicAdapter);
     }
+
+    private ImageView.OnClickListener showTopicSliders = new ImageView.OnClickListener() {
+        @Override
+        public void onClick(View v){
+            searchItem.setVisible(false);
+            searchView.setVisibility(View.GONE);
+            applySliderListChanges();
+            getTopicAndSliderList(topic, depth);
+            if (topicBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)
+                topicBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            else
+                topicBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        }
+    };
 
     private String getRequestURL(String topic) {
         String base = getResources().getString(R.string.article_source) + topic;
@@ -123,12 +129,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    String[][] defaultSliders = {{"Political Stance", "LR", "50", "Left", "Right"},
+    String[][] defaultSliders = {
+            {"Political Stance", "LR", "50", "Left", "Right"},
             {"Establishment Stance", "PE", "50", "Critical", "Pro"},
             {"Writing Style", "NU", "70", "Crude", "Nuanced"},
             {"Depth", "DE", "70", "Breezy", "Detailed"},
             {"Shelf-Life", "SL", "70", "Short", "Long"},
-            {"Recency", "RE", "70", "Evergreen", "Latest"}};
+            {"Recency", "RE", "70", "Evergreen", "Latest"}
+    };
     private void getTopicAndSliderList(String topic, String depthString) {
         //mnemonic, to display, official name, "lowercase" name, depth, popularity, code
         topicList = new ArrayList<Topic>();
@@ -149,9 +157,10 @@ public class MainActivity extends AppCompatActivity {
         String readLine;
         try {
             int cnt = 0;
+            float[] hsv = new float[3];
             while ((readLine = br.readLine()) != null) {
-                cnt++;
                 String[] row = readLine.split("\t");
+                cnt++;
                 if (!row[1].equals("0")) {
                     topicList.add(new Topic(row[2], row[0], Integer.parseInt(row[4])));
                     if (row[0].equals(topic)) {
@@ -160,7 +169,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else if (inRange && Integer.parseInt(row[4]) == depth + 1) {
                         int pop = Double.valueOf(Double.parseDouble(row[5])/base*99).intValue();
-                        topicSliderList.add(new Slider(row[2], row[6], sp.getInt(row[6], pop), pop, 1, Color.rgb((cnt%6)*51, (cnt%6)*51, (cnt%6)*51)));
+                        hsv[0] = ((4*cnt)%29)*12; //engineered to look "random" and aesthetically pleasing
+                        hsv[1] = 0.5f;
+                        hsv[2] = 0.7f + (cnt%3)/10f;
+                        topicSliderList.add(new Slider(row[2], row[6], sp.getInt(row[6], pop), pop, 1, Color.HSVToColor(hsv)));
                         Log.d("TAG", "getTopicList: " + row[2] + row[6] + pop);
                     }
                     else if (inRange && Integer.parseInt(row[4]) == depth)
@@ -198,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         editor.commit();
+        Log.d("TAG", "applySliderListChanges: editor commit");
     }
 
     @Override
@@ -255,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
         mnemonic = articleList.get(0).getTitle();
         topicSliderList.get(0).setTitle("Your " + mnemonic + " Feed");
         path = path + mnemonic;
-        articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels);
+        articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels, showTopicSliders);
         topicSliderAdapter = new SliderAdapter(topicSliderList);
         biasSliderAdapter = new SliderAdapter(biasSliderList);
 
@@ -294,13 +307,10 @@ public class MainActivity extends AppCompatActivity {
                 //TODO: mess with this later when free
             }
         });
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                srv.setAdapter(biasSliderAdapter);
-//                Log.d("TAG", "onClick: why doesn't slider list change");
-//                srv.setBackgroundColor(Color.TRANSPARENT);
                 if (biasBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)
                     biasBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 else
@@ -315,9 +325,6 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(articleAdapter);
         bsrv.setAdapter(biasSliderAdapter);
         tsrv.setAdapter(topicSliderAdapter);
-
-        navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     @Override
@@ -328,6 +335,14 @@ public class MainActivity extends AppCompatActivity {
         searchItem = menu.findItem(R.id.app_bar_search);
         searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                fab.show();
+                rv.setAdapter(articleAdapter);
+                return false;
+            }
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {

@@ -37,7 +37,7 @@
             android:id="@+id/shareButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_share" />
+            app:srcCompat="@drawable/ic_share" />
 
         <TextView
             android:id="@+id/textView4"

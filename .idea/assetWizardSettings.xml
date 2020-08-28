@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/social/ic_share_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/editor/ic_pie_chart_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -34,7 +34,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="imageAsset" value="E:\My Schoolwork\Y1.2 Frosh Spring\Summer\logo512.png" />
-                                      <entry key="outputName" value="ic_share" />
+                                      <entry key="outputName" value="ic_pie" />
                                       <entry key="theme" value="HOLO_DARK" />
                                     </map>
                                   </option>

@@ -34,7 +34,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
         CardView card;
         TextView sliderTitle, startText, endText;
         SeekBar seekBar;
-        View view0, view1, color;
+        View color;
         String code;
         PieChart pieChart;
         int index;
@@ -46,8 +46,6 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
             this.startText = (TextView) itemView.findViewById(R.id.startText);
             this.endText = (TextView) itemView.findViewById(R.id.endText);
             this.seekBar = (SeekBar) itemView.findViewById(R.id.seekBar);
-            this.view0 = (View) itemView.findViewById(R.id.view0);
-            this.view1 = (View) itemView.findViewById(R.id.view1);
             this.color = (View) itemView.findViewById(R.id.slider_color);
             this.pieChart = (PieChart) itemView.findViewById(R.id.chart);
         }
@@ -203,19 +201,6 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
                 break;
             default:
                 //case 1:
-                params0 = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        99 - sliderList.get(holder.index).getUsualvalue()
-                );
-                Log.d(TAG, "onBindViewHolder: usual value " + sliderList.get(holder.index).getUsualvalue());
-                holder.view0.setLayoutParams(params0);
-                params1 = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        sliderList.get(holder.index).getUsualvalue()
-                );
-                holder.view1.setLayoutParams(params1);
                 holder.color.setBackgroundColor(sliderList.get(holder.index).getColor());
                 break;
         }
