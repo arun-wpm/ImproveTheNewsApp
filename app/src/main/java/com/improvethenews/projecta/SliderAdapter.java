@@ -178,7 +178,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
                     reevaluateValues();
-                    ((MainActivity) context).updateArticles();
+                    ((MainActivity) context).updateArticles("");
                 }
             });
         }

@@ -1,5 +1,6 @@
 package com.improvethenews.projecta;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.ColorRes;
@@ -13,11 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.flexbox.FlexboxLayout;
 
 import org.json.JSONArray;
+import org.w3c.dom.Text;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,21 +35,25 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     private int depth;
     private int screenHeight, screenWidth;
     private ImageView.OnClickListener listener;
+    private Context context;
 
     public static class ArticleViewHolder extends RecyclerView.ViewHolder {
+        //TODO: surely I can refactor this right, not too many global variables?
         CardView card;
         ImageView articleImage;
         TextView articleBreadcrumb;
         TextView articleTitle;
         TextView articleSource;
         TextView articleTime;
+        TextView articlePercent;
 //        FlexboxLayout articleTags;
         ImageButton shareButton;
         ImageView articlePie;
         String url = "";
         JSONArray markup = null;
         String mnemonic = "";
-        View itemView;
+        View itemView, vL, vC, vR;
+        SeekBar seekBar;
 
         public ArticleViewHolder(View itemView) {
             super(itemView);
@@ -59,13 +67,18 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
             this.shareButton = (ImageButton) itemView.findViewById(R.id.shareButton);
             this.articlePie = (ImageView) itemView.findViewById(R.id.article_pie);
             this.itemView = itemView;
+            this.articlePercent = (TextView) itemView.findViewById(R.id.article_percent);
+            this.vL = itemView.findViewById(R.id.viewL);
+            this.vC = itemView.findViewById(R.id.viewC);
+            this.vR = itemView.findViewById(R.id.viewR);
+            this.seekBar = itemView.findViewById(R.id.article_seekbar);
         }
     }
 
     public ArticleAdapter(List<Article> articleList, String from, String path, String depth, int screenHeight, int screenWidth, ImageView.OnClickListener listener) {
         this.articleList = articleList;
         try {
-            this.articleList.add(new Article(null, "Improve the News", null, "",0,"", "", new URL("http://www.improvethenews.org/index.php/faq/"), 4, null));
+            this.articleList.add(new Article(null, "Improve the News", null, "",0, 0,"", "", new URL("http://www.improvethenews.org/index.php/faq/"), 4, null));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -106,7 +119,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_more, parent, false);
                 break;
             case -1:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_topic, parent, false);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card_subtopic, parent, false);
                 break;
             case 0:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_card, parent, false);
@@ -163,7 +176,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
                 }
             }
         });
-
+        context = parent.getContext();
         return articleViewHolder;
     }
 
@@ -180,7 +193,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     @Override
     public void onBindViewHolder(final ArticleViewHolder holder, final int index) {
         int type = holder.getItemViewType();
-        int i = holder.getAdapterPosition();
+        final int i = holder.getAdapterPosition();
         int px;
         switch (type) {
             case -4:
@@ -189,8 +202,35 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
                 if (articleList.get(i).getMnemonic() != null)
                     holder.mnemonic = articleList.get(i).getMnemonic();
                 break;
-            case -3:
             case -1:
+                double percent = articleList.get(i).getPercent();
+//                float percent = 0.24547f; //dummy for now
+                holder.articlePercent.setText("Represents " + percent*100 + "% of Headlines");
+                holder.seekBar.setProgress((int) percent*99);
+                double defpercent = articleList.get(i).getDefPercent();
+//                float defpercent = 0.24547f; //dummy for now
+                holder.vL.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, (float) defpercent));
+                holder.vR.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 99f-(float)defpercent));
+                holder.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        //TODO: insert formula here
+                        holder.articlePercent.setText("Represents " + progress + "% of Headlines");
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        String n = String.valueOf(seekBar.getProgress());
+                        n = ("00" + n).substring(n.length());
+                        ((MainActivity) context).updateArticles(articleList.get(i).getCode()+n);
+                    }
+                });
+            case -3:
                 holder.articleTitle.setText(articleList.get(i).getTitle());
                 if (articleList.get(i).getMnemonic() != null)
                     holder.mnemonic = articleList.get(i).getMnemonic();

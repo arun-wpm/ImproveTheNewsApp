@@ -1,5 +1,7 @@
 package com.improvethenews.projecta;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,11 +35,13 @@ public class ArticleExtractor {
     boolean initial;
     ArrayList<Article> articleList;
     ArticleAdapter articleAdapter;
+    Context context;
 
     private class PullAsyncTask extends AsyncTask<Void, Void, String> {
 
         @Override
         protected String doInBackground(Void... voids) {
+            String newvals = "";
             try {
                 HttpURLConnection c = (HttpURLConnection) url.openConnection();
                 c.connect();
@@ -48,25 +52,27 @@ public class ArticleExtractor {
                     if (all == null) // Bug in the backend?
                         return "";
                     JSONArray array = new JSONArray(all);
-                    for (int i = 0; i < array.length(); i++) {
+                    JSONArray newsliders = array.getJSONArray(0);
+                    newvals = newsliders.getString(0);
+                    for (int i = 1; i < array.length(); i++) {
                         //for each topic
                         JSONArray subarray = array.getJSONArray(i);
                         JSONArray topic = subarray.getJSONArray(0);
                         JSONArray articles = subarray.getJSONArray(1);
                         Log.d(TAG, "run: " + articles);
                         if (i == 0)
-                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(5), topic.getDouble(4), "", "", null, -3, null));
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(5), topic.getDouble(7),"", "", null, -3, null));
                         else
-                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(5), topic.getDouble(4), "", "", null, -1, null));
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(5), topic.getDouble(7), "", "", null, -1, null));
                         for (int j = 0; j < articles.length(); j++) {
                             //for each article
                             Log.d(TAG, "run: " + articles.getJSONArray(j));
                             articleList.add(parseJSON(articles.getJSONArray(j), (i == 0) ? 0 : (j < 2) ? i % 2 + 1 : 3));
                         }
                         if (i == 0)
-                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(5), topic.getDouble(4), "", "", null, -4, null));
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(5), topic.getDouble(7), "", "", null, -4, null));
                         else
-                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(5), topic.getDouble(4), "", "", null, -2, null));
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(5), topic.getDouble(7), "", "", null, -2, null));
                     }
                 }
             } catch (IOException e) {
@@ -74,37 +80,51 @@ public class ArticleExtractor {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            return articleList.get(0).getTitle();
+            return articleList.get(0).getTitle() + "$" + newvals;
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            Log.d(TAG, "onPostExecute: " + s);
+            try {
+                String newvals = s.split("\\$")[1];
+                SharedPreferences sp = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                for (int i = 0; i < newvals.length(); i += 4) {
+                    String code = s.substring(i, i+2);
+                    int val = Integer.valueOf(s.substring(i+2, i+4));
+                    editor.putInt(code, val);
+                }
+                editor.commit();
+            }
+            catch(ArrayIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
             articleAdapter.notifyDataSetChanged();
         }
     }
 
     private Article parseJSON(JSONArray array, int type) {
-        //[<medianame>,<howlongago>,<title>,<url>,<imgurl>,<markup>]
+        //[<medianame>,<howlongago>,<title>,<url>,<imgurl>,<N/E/P>,<ampurl>,<markup>]
         try {
             Article a;
-            if (array.length() > 5) //has markup
-                a = new Article(new URL(array.getString(4)), array.getString(2), null, null, 0, array.getString(0), array.getString(1), new URL(array.getString(3)), type, array.getJSONArray(5));
-            else
-                a = new Article(new URL(array.getString(4)), array.getString(2), null, null, 0, array.getString(0), array.getString(1), new URL(array.getString(3)), type, null);
+            String url = (array.getString(6).equals(""))?array.getString(3):array.getString(6);
+            a = new Article(new URL(array.getString(4)), array.getString(2), null, null, 0, 0, array.getString(0), array.getString(1), new URL(url), type, array.getJSONArray(7));
             return a;
         } catch (MalformedURLException e) {
-            Article a = new Article(null, "", "", "",0,"", "", null, 0, null);
+            Article a = new Article(null, "", "", "",0,0,"", "", null, 0, null);
             e.printStackTrace();
             return a;
         } catch (JSONException e) {
-            Article a = new Article(null, "", "", "", 0,"","", null, 0, null);
+            Article a = new Article(null, "", "", "", 0,0,"","", null, 0, null);
             e.printStackTrace();
             return a;
         }
     }
 
-    ArticleExtractor(URL url, boolean initial, ArrayList articleList, ArticleAdapter articleAdapter) {
+    ArticleExtractor(Context context, URL url, boolean initial, ArrayList articleList, ArticleAdapter articleAdapter) {
+        this.context = context;
         this.url = url;
         this.initial = initial;
         this.articleList = articleList;

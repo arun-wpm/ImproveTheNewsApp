@@ -41,15 +41,18 @@ public class Article {
 //    String[] tags;
     int type;
     double popularity;
+    double percent, defPercent;
     JSONArray markup;
 
-    Article(final URL imgurl, String title, String mnemonic, String code, double popularity, String source, String reltime, URL url, int type, JSONArray markup) {
+    Article(final URL imgurl, String title, String mnemonic, String code, double percent, double defPercent, String source, String reltime, URL url, int type, JSONArray markup) {
         Log.d(TAG, "Article: " + imgurl + title + mnemonic + code + popularity + source + reltime + url + type);
         this.imgurl = imgurl;
         this.title = title;
         this.mnemonic = mnemonic;
         this.code = code;
-        this.popularity = popularity;
+//        this.popularity = popularity;
+        this.percent = percent;
+        this.defPercent = defPercent;
         this.source = source;
         this.reltime = reltime;
         this.url = url;
@@ -76,10 +79,10 @@ public class Article {
     public String getCode() {
         return code;
     }
-    public double getPopularity() {
-        Log.d(TAG, "getPopularity: " + popularity);
-        return popularity;
-    }
+//    public double getPopularity() {
+//        Log.d(TAG, "getPopularity: " + popularity);
+//        return popularity;
+//    }
     public String getSource() {
         return source;
     }
@@ -106,5 +109,12 @@ public class Article {
     }
     public JSONArray getMarkup() {
         return markup;
+    }
+    public double getPercent() {
+        return percent;
+    }
+
+    public double getDefPercent() {
+        return defPercent;
     }
 }

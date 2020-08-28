@@ -57,10 +57,11 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout biasSliderBottomSheet, topicSliderBottomSheet;
     private FloatingActionButton fab;
 
-    public void updateArticles() {
+    public void updateArticles(String superSliderChange) {
         applySliderListChanges();
-        getArticleList(topic, false);
-        //TODO: improve performance?
+        getArticleList(topic, superSliderChange, false);
+        updateSliderList(topic, depth);
+        //TODO: Toast
 //        articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels, showTopicSliders);
 //        rv.setAdapter(articleAdapter);
     }
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private String getRequestURL(String topic) {
+    private String getRequestURL(String topic, String superSliderChange) {
         String base = getResources().getString(R.string.article_source) + topic;
         settings = "";
         base += "&sliders=";
@@ -98,13 +99,14 @@ public class MainActivity extends AppCompatActivity {
             String n = String.valueOf(slider.getValue());
             settings += ("00" + n).substring(n.length());
         }
+        settings += superSliderChange;
         Log.d("TAG", "getRequestURL: " + base + settings);
         return base + settings;
     }
 
-    private String getArticleList(String topic, boolean initial) {
+    private String getArticleList(String topic, String superSliderChange, boolean initial) {
         try {
-            ArticleExtractor extractor = new ArticleExtractor(new URL(getRequestURL(topic)), initial, articleList, articleAdapter);
+            ArticleExtractor extractor = new ArticleExtractor(this, new URL(getRequestURL(topic, superSliderChange)), initial, articleList, articleAdapter);
             return extractor.pull();
 //            articleList = extractor.getArticleList();
         } catch (MalformedURLException e) {
@@ -121,8 +123,23 @@ public class MainActivity extends AppCompatActivity {
             {"Shelf-Life", "SL", "70", "Short", "Long"},
             {"Recency", "RE", "70", "Evergreen", "Latest"}
     };
+    private void updateSliderList(String topic, String depthString) {
+        //mnemonic, to display, official name, "lowercase" name, depth, popularity, code
+        topic = topic.split("\\.")[0];
+        biasSliderList.add(new Slider("Bias Sliders", "", 0, 0, -2));
+        for (int i = 0; i < biasSliderList.size(); i++) {
+            biasSliderList.get(i).setValue(sp.getInt(defaultSliders[i][1], Integer.parseInt(defaultSliders[i][2])));
+        }
+        biasSliderAdapter.notifyDataSetChanged();
+        for (int i = 0; i < topicSliderList.size(); i++) {
+            topicSliderList.get(i).setValue(sp.getInt(topicSliderList.get(i).getCode(), topicSliderList.get(i).getUsualvalue()));
+        }
+        topicSliderAdapter.notifyDataSetChanged();
+    }
     private void getTopicAndSliderList(String topic, String depthString) {
         //mnemonic, to display, official name, "lowercase" name, depth, popularity, code
+        topic = topic.split("\\.")[0];
+        Log.d("TAG", "getTopicAndSliderList: " + depthString);
         topicList = new ArrayList<Topic>();
         topicSliderList = new ArrayList<Slider>();
         biasSliderList = new ArrayList<Slider>();
@@ -249,7 +266,8 @@ public class MainActivity extends AppCompatActivity {
         getTopicAndSliderList(topic, depth);
         topicAdapter = new TopicAdapter(topicList);
         articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels, showTopicSliders);
-        title = getArticleList(topic, true);
+        String titleAndNewvals = getArticleList(topic, "",true);
+        title = titleAndNewvals.split("\\$")[0];
 //        title = articleList.get(0).getTitle();
         topicSliderList.get(0).setTitle("Your " + title + " Feed");
 //        path = path + title;
