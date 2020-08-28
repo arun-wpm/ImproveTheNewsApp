@@ -56,23 +56,25 @@ public class ArticleExtractor {
                     newvals = newsliders.getString(0);
                     for (int i = 1; i < array.length(); i++) {
                         //for each topic
+                        //["news", "headline", "Headlines", 14, "aa", 1.0, 1.005049494949495, 1.0, []]
+                        //["world", "world", "World", 14, "Aa", 2970, 0.61701, 0.61701, 0.30303030303030304, [["news", "Headlines"]]]
                         JSONArray subarray = array.getJSONArray(i);
                         JSONArray topic = subarray.getJSONArray(0);
                         JSONArray articles = subarray.getJSONArray(1);
                         Log.d(TAG, "run: " + articles);
-                        if (i == 0)
-                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(5), topic.getDouble(7),"", "", null, -3, null));
+                        if (i == 1)
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(7), topic.getDouble(5),"", "", null, -3, null));
                         else
-                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(5), topic.getDouble(7), "", "", null, -1, null));
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(8), topic.getDouble(6), "", "", null, -1, null));
                         for (int j = 0; j < articles.length(); j++) {
                             //for each article
                             Log.d(TAG, "run: " + articles.getJSONArray(j));
-                            articleList.add(parseJSON(articles.getJSONArray(j), (i == 0) ? 0 : (j < 2) ? i % 2 + 1 : 3));
+                            articleList.add(parseJSON(articles.getJSONArray(j), (i == 1) ? 0 : (j < 2) ? i % 2 + 1 : 3));
                         }
-                        if (i == 0)
-                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(5), topic.getDouble(7), "", "", null, -4, null));
+                        if (i == 1)
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(7), topic.getDouble(5), "", "", null, -4, null));
                         else
-                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(5), topic.getDouble(7), "", "", null, -2, null));
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(8), topic.getDouble(6), "", "", null, -2, null));
                     }
                 }
             } catch (IOException e) {
@@ -88,15 +90,18 @@ public class ArticleExtractor {
             super.onPostExecute(s);
             Log.d(TAG, "onPostExecute: " + s);
             try {
+                String topic = s.split("\\$")[0];
                 String newvals = s.split("\\$")[1];
+                Log.d(TAG, "onPostExecute: " + newvals);
                 SharedPreferences sp = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 for (int i = 0; i < newvals.length(); i += 4) {
-                    String code = s.substring(i, i+2);
-                    int val = Integer.valueOf(s.substring(i+2, i+4));
+                    String code = newvals.substring(i, i+2);
+                    int val = Integer.valueOf(newvals.substring(i+2, i+4));
                     editor.putInt(code, val);
                 }
                 editor.commit();
+                ((MainActivity) context).updateSliderList(topic);
             }
             catch(ArrayIndexOutOfBoundsException e) {
                 e.printStackTrace();

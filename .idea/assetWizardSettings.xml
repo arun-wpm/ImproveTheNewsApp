@@ -35,7 +35,8 @@
                                     <map>
                                       <entry key="imageAsset" value="E:\My Schoolwork\Y1.2 Frosh Spring\Summer\logo512.png" />
                                       <entry key="outputName" value="ic_pie" />
-                                      <entry key="theme" value="HOLO_DARK" />
+                                      <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="ff6700" />
                                     </map>
                                   </option>
                                 </PersistentState>

@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.flexbox.FlexboxLayoutManager;
 
@@ -60,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
     public void updateArticles(String superSliderChange) {
         applySliderListChanges();
         getArticleList(topic, superSliderChange, false);
-        updateSliderList(topic, depth);
-        //TODO: Toast
+        Toast toast = Toast.makeText(getApplicationContext(), "Updating news with new preferences...", Toast.LENGTH_SHORT);
+        toast.show();
 //        articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels, showTopicSliders);
 //        rv.setAdapter(articleAdapter);
     }
@@ -99,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
             String n = String.valueOf(slider.getValue());
             settings += ("00" + n).substring(n.length());
         }
-        settings += superSliderChange;
+        if (!superSliderChange.equals(""))
+            settings += "_" + superSliderChange;
         Log.d("TAG", "getRequestURL: " + base + settings);
         return base + settings;
     }
@@ -123,16 +125,17 @@ public class MainActivity extends AppCompatActivity {
             {"Shelf-Life", "SL", "70", "Short", "Long"},
             {"Recency", "RE", "70", "Evergreen", "Latest"}
     };
-    private void updateSliderList(String topic, String depthString) {
+    public void updateSliderList(String topic) {
         //mnemonic, to display, official name, "lowercase" name, depth, popularity, code
         topic = topic.split("\\.")[0];
-        biasSliderList.add(new Slider("Bias Sliders", "", 0, 0, -2));
         for (int i = 0; i < biasSliderList.size(); i++) {
-            biasSliderList.get(i).setValue(sp.getInt(defaultSliders[i][1], Integer.parseInt(defaultSliders[i][2])));
+            if (biasSliderList.get(i).getCode().length() == 2)
+                biasSliderList.get(i).setValue(sp.getInt(biasSliderList.get(i).getCode(), biasSliderList.get(i).getUsualvalue()));
         }
         biasSliderAdapter.notifyDataSetChanged();
         for (int i = 0; i < topicSliderList.size(); i++) {
-            topicSliderList.get(i).setValue(sp.getInt(topicSliderList.get(i).getCode(), topicSliderList.get(i).getUsualvalue()));
+            if (topicSliderList.get(i).getCode().length() == 2)
+                topicSliderList.get(i).setValue(sp.getInt(topicSliderList.get(i).getCode(), topicSliderList.get(i).getUsualvalue()));
         }
         topicSliderAdapter.notifyDataSetChanged();
     }

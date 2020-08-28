@@ -147,7 +147,7 @@ public class AnnotatedWebViewActivity extends AppCompatActivity {
             for (int i = 0; i < markup.length(); i++) {
                 final JSONArray item = markup.getJSONArray(i);
 
-                MarkupCardView markupCardView = new MarkupCardView(this, new URL(item.getString(1)), item.getString(0));
+                MarkupCardView markupCardView = new MarkupCardView(this, item.getString(1), item.getString(0));
                 markupCardView.setId(View.generateViewId());
                 markupCardView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -170,8 +170,8 @@ public class AnnotatedWebViewActivity extends AppCompatActivity {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

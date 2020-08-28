@@ -182,6 +182,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
 
     @Override
     public void onViewAttachedToWindow(ArticleViewHolder holder) {
+        switch (holder.getItemViewType()) {
+            case -1:
+                double percent = articleList.get(holder.getAdapterPosition()).getPercent();
+                holder.articlePercent.setText("Represents " + Math.round(percent*100*100)/100f + "% of Headlines");
+                break;
+        }
 //        Log.d(TAG, "onViewAttachedToWindow" + holder.index);
     }
 
@@ -204,18 +210,21 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
                 break;
             case -1:
                 double percent = articleList.get(i).getPercent();
-//                float percent = 0.24547f; //dummy for now
-                holder.articlePercent.setText("Represents " + percent*100 + "% of Headlines");
-                holder.seekBar.setProgress((int) percent*99);
+                holder.articlePercent.setText("Represents " + Math.round(percent*100*100)/100f + "% of Headlines");
+                percent = Math.log(percent/0.00001)/Math.log(0.9/0.00001);
+                Log.d(TAG, "onBindViewHolder: " + percent);
+                holder.seekBar.setProgress((int) Math.round(percent*99));
                 double defpercent = articleList.get(i).getDefPercent();
-//                float defpercent = 0.24547f; //dummy for now
+                defpercent = Math.log(defpercent/0.00001)/Math.log(0.9/0.00001);
                 holder.vL.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, (float) defpercent));
-                holder.vR.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 99f-(float)defpercent));
+                holder.vR.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 0.99f-(float)defpercent));
                 holder.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         //TODO: insert formula here
-                        holder.articlePercent.setText("Represents " + progress + "% of Headlines");
+                        double calc = 100.0*0.00001*Math.exp((progress/99.0)*Math.log(0.9/0.00001));
+                        Log.d(TAG, "onProgressChanged: " + calc);
+                        holder.articlePercent.setText("Represents " + Math.round(calc*100)/100f + "% of Headlines");
                     }
 
                     @Override
