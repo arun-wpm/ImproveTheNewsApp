@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private SliderAdapter topicSliderAdapter, biasSliderAdapter;
     private TopicAdapter topicAdapter;
     private ArrayList<Slider> topicSliderList, biasSliderList;
-    private ArrayList<Article> articleList;
+    private ArrayList<Article> articleList = new ArrayList<>();
     private ArrayList<Topic> topicList;
     private String topic, title, settings, path, depth;
     private RecyclerView rv, bsrv, tsrv;
@@ -57,33 +57,12 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout biasSliderBottomSheet, topicSliderBottomSheet;
     private FloatingActionButton fab;
 
-//    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-//            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-//
-//        @Override
-//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//            switch (item.getItemId()) {
-//                case R.id.navigation_news:
-//                    searchItem.setVisible(true);
-//                    searchView.setVisibility(View.VISIBLE);
-//                    applySliderListChanges();
-//                    getArticleList(topic);
-//                    articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels);
-//                    rv.setAdapter(articleAdapter);
-//                    return true;
-//                case R.id.navigation_sliders:
-//                    return true;
-//            }
-//            return false;
-//        }
-//    };
-
     public void updateArticles() {
         applySliderListChanges();
-        getArticleList(topic);
-        //TODO: improve performance
-        articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels, showTopicSliders);
-        rv.setAdapter(articleAdapter);
+        getArticleList(topic, false);
+        //TODO: improve performance?
+//        articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels, showTopicSliders);
+//        rv.setAdapter(articleAdapter);
     }
 
     private void showTopicsScreen() {
@@ -98,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageView.OnClickListener showTopicSliders = new ImageView.OnClickListener() {
         @Override
         public void onClick(View v){
-//            searchItem.setVisible(false);
-//            searchView.setVisibility(View.GONE);
             applySliderListChanges();
             getTopicAndSliderList(topic, depth);
             if (topicBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)
@@ -125,21 +102,21 @@ public class MainActivity extends AppCompatActivity {
         return base + settings;
     }
 
-    private void getArticleList(String topic) {
+    private String getArticleList(String topic, boolean initial) {
         try {
-//            ArticleExtractor extractor = new ArticleExtractor(new URL("https://raw.githubusercontent.com/rayaburong/rayaburong.github.io/master/data/summary_nytimes_crawled.tsv"));
-            ArticleExtractor extractor = new ArticleExtractor(new URL(getRequestURL(topic)));
-            extractor.pull();
-            articleList = extractor.getArticleList();
+            ArticleExtractor extractor = new ArticleExtractor(new URL(getRequestURL(topic)), initial, articleList, articleAdapter);
+            return extractor.pull();
+//            articleList = extractor.getArticleList();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     String[][] defaultSliders = {
             {"Political Stance", "LR", "50", "Left", "Right"},
             {"Establishment Stance", "PE", "50", "Critical", "Pro"},
-            {"Writing Style", "NU", "70", "Crude", "Nuanced"},
+            {"Writing Style", "NU", "70", "Provocative", "Nuanced"},
             {"Depth", "DE", "70", "Breezy", "Detailed"},
             {"Shelf-Life", "SL", "70", "Short", "Long"},
             {"Recency", "RE", "70", "Evergreen", "Latest"}
@@ -271,11 +248,11 @@ public class MainActivity extends AppCompatActivity {
 
         getTopicAndSliderList(topic, depth);
         topicAdapter = new TopicAdapter(topicList);
-        getArticleList(topic);
-        title = articleList.get(0).getTitle();
+        articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels, showTopicSliders);
+        title = getArticleList(topic, true);
+//        title = articleList.get(0).getTitle();
         topicSliderList.get(0).setTitle("Your " + title + " Feed");
 //        path = path + title;
-        articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels, showTopicSliders);
         topicSliderAdapter = new SliderAdapter(topicSliderList);
         biasSliderAdapter = new SliderAdapter(biasSliderList);
 

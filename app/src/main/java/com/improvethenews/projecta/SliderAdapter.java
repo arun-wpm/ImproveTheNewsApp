@@ -151,7 +151,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
     @Override
     public void onBindViewHolder(final SliderViewHolder holder, final int index) {
         //TODO: refactor this part to a switch case
-        int type = holder.getItemViewType();
+        final int type = holder.getItemViewType();
         holder.index = index;
         if (type != 2)
             holder.sliderTitle.setText(sliderList.get(holder.index).getTitle());
@@ -165,7 +165,8 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
                     if (fromUser == true) {
                         sliderList.get(holder.index).setValue(progress);
                         Log.d(TAG, "onProgressChanged: " + progress);
-                        renderPie();
+                        if (type == 1)
+                            renderPie();
                     }
                 }
 
