@@ -5,7 +5,7 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8sp"
+    app:cardCornerRadius="12sp"
     app:cardUseCompatPadding="true">
 
     <android.support.constraint.ConstraintLayout
@@ -27,7 +27,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/article_image"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/article_source" />
 
         <TextView
             android:id="@+id/article_source"
@@ -37,7 +38,7 @@
             android:layout_marginRight="8dp"
             app:layout_constraintEnd_toStartOf="@+id/article_image"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/article_title" />
+            app:layout_constraintBottom_toTopOf="@+id/article_time"/>
 
         <TextView
             android:id="@+id/article_time"
@@ -48,15 +49,13 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/article_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/article_source" />
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <ImageView
             android:id="@+id/article_image"
             android:layout_width="120sp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

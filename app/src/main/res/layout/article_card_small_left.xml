@@ -5,7 +5,7 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8sp"
+    app:cardCornerRadius="12sp"
     app:cardUseCompatPadding="true">
 
     <android.support.constraint.ConstraintLayout
@@ -18,7 +18,6 @@
             android:id="@+id/article_image"
             android:layout_width="120sp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,9 +35,10 @@
             android:maxLines="3"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/article_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/article_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/article_source" />
 
         <TextView
             android:id="@+id/article_source"
@@ -46,9 +46,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintStart_toEndOf="@+id/article_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/article_title" />
+            app:layout_constraintStart_toEndOf="@+id/article_image"
+            app:layout_constraintBottom_toTopOf="@+id/article_time"/>
 
         <TextView
             android:id="@+id/article_time"
@@ -58,9 +58,8 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/article_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/article_source" />
+            app:layout_constraintStart_toEndOf="@+id/article_image" />
 
 
     </android.support.constraint.ConstraintLayout>

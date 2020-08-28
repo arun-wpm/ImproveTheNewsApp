@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView.OnClickListener showTopicSliders = new ImageView.OnClickListener() {
         @Override
         public void onClick(View v){
-            searchItem.setVisible(false);
-            searchView.setVisibility(View.GONE);
+//            searchItem.setVisible(false);
+//            searchView.setVisibility(View.GONE);
             applySliderListChanges();
             getTopicAndSliderList(topic, depth);
             if (topicBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)

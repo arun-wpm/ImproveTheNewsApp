@@ -5,10 +5,10 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardCornerRadius="12sp"
+    app:cardUseCompatPadding="true"
     app:strokeColor="@color/markup"
-    app:strokeWidth="4dp"
-    app:cardCornerRadius="8sp"
-    app:cardUseCompatPadding="true">
+    app:strokeWidth="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,9 +31,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
+                android:textColor="@color/markup"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/markup" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
