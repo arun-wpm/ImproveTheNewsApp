@@ -326,6 +326,8 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.custom_actionbar);
+        if (topic != "news")
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
 
         //default: show articles
         rv.setAdapter(articleAdapter);
@@ -372,5 +374,9 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 }
