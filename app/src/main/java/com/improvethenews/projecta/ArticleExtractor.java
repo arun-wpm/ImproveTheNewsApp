@@ -57,25 +57,27 @@ public class ArticleExtractor {
                     for (int i = 1; i < array.length(); i++) {
                         //for each topic
                         //["news", "headline", "Headlines", 14, "aa", 1.0, 1.005049494949495, 1.0, []]
-                        //["world", "world", "World", 14, "Aa", 2970, 0.61701, 0.61701, 0.30303030303030304, [["news", "Headlines"]]]
+                        //["world", "world", "World", 14, "Aa", 0.61701, 0.5757575757575758, 0.5757575757575758, [["news", "Headlines"]]]
                         JSONArray subarray = array.getJSONArray(i);
                         JSONArray topic = subarray.getJSONArray(0);
+                        Log.d(TAG, "run: topic " + topic);
                         JSONArray articles = subarray.getJSONArray(1);
-                        Log.d(TAG, "run: " + articles);
+                        Log.d(TAG, "run: articles" + articles);
                         if (i == 1)
                             articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(7), topic.getDouble(5),"", "", null, -3, null));
                         else
-                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(8), topic.getDouble(6), "", "", null, -1, null));
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(7), topic.getDouble(5), "", "", null, -1, null));
                         for (int j = 0; j < articles.length(); j++) {
                             //for each article
-                            Log.d(TAG, "run: " + articles.getJSONArray(j));
+                            Log.d(TAG, "run: individual article " + articles.getJSONArray(j));
                             articleList.add(parseJSON(articles.getJSONArray(j), (i == 1) ? 0 : (j < 2) ? i % 2 + 1 : 3));
                         }
                         if (i == 1)
                             articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(7), topic.getDouble(5), "", "", null, -4, null));
                         else
-                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(8), topic.getDouble(6), "", "", null, -2, null));
+                            articleList.add(new Article(null, topic.getString(2), topic.getString(0), topic.getString(4), topic.getDouble(7), topic.getDouble(5), "", "", null, -2, null));
                     }
+                    articleList.add(new Article(null, "", "", "", 0, 0, "", "", null, 4, null));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -152,6 +154,8 @@ public class ArticleExtractor {
         if (initial) {
             try {
                 String title = task.execute().get();
+                for (int i = 0; i < articleList.size(); i++)
+                    Log.d(TAG, "pull: " + articleList.get(i).getType());
                 return title;
             } catch (ExecutionException e) {
                 e.printStackTrace();

@@ -6,8 +6,8 @@ android {
         applicationId "com.improvethenews.projecta"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 4
-        versionName "2.00828"
+        versionCode 5
+        versionName "2.00829"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

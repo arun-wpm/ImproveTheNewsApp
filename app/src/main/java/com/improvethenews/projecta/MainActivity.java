@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(R.layout.activity_main);
 
         //user id system
@@ -270,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
         topicAdapter = new TopicAdapter(topicList);
         articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels, showTopicSliders);
         String titleAndNewvals = getArticleList(topic, "",true);
+        Log.d("TAG", "onCreate: " + titleAndNewvals);
         title = titleAndNewvals.split("\\$")[0];
 //        title = articleList.get(0).getTitle();
         topicSliderList.get(0).setTitle("Your " + title + " Feed");
