@@ -63,7 +63,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="50" />
+                                                <entry key="scalingPercent" value="70" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -75,21 +75,17 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="ffffff" />
+                                      <entry key="backgroundImage" value="E:\My Schoolwork\Y2.1 Sophomore Fall\UROP\ITN-AppIcons[15190]\playstore.png" />
                                       <entry key="backgroundLayerName" value="ic_background" />
-                                      <entry key="foregroundImage" value="E:\My Schoolwork\Y1.2 Frosh Spring\Summer\logo512.png" />
+                                      <entry key="foregroundImage" value="E:\My Schoolwork\Y2.1 Sophomore Fall\UROP\ITN-AppIcons[15190]\playstore.png" />
                                       <entry key="foregroundLayerName" value="ic_foreground" />
-                                      <entry key="outputName" value="ic_itn" />
+                                      <entry key="outputName" value="ic_logo2" />
                                       <entry key="showSafeZone" value="false" />
                                     </map>
                                   </option>
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>
