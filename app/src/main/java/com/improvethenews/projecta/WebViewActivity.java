@@ -1,10 +1,9 @@
 package com.improvethenews.projecta;
 
 import android.content.Context;
-import android.media.Rating;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +12,6 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.Toast;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
@@ -27,8 +23,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class WebViewActivity extends AppCompatActivity {
 

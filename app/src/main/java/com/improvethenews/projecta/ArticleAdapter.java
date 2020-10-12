@@ -2,13 +2,10 @@ package com.improvethenews.projecta;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.annotation.ColorRes;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.google.android.flexbox.FlexboxLayout;
-
 import org.json.JSONArray;
-import org.w3c.dom.Text;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -312,4 +306,5 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     public int getItemCount() {
         return articleList.size();
     }
+
 }

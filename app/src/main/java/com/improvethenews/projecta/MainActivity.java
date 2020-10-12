@@ -4,16 +4,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.SearchView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     public void updateArticles(String superSliderChange) {
         applySliderListChanges();
         getArticleList(topic, superSliderChange, false);
-        Toast toast = Toast.makeText(getApplicationContext(), "Updating news with new preferences...", Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(getApplicationContext(), "Updating news...", Toast.LENGTH_SHORT);
         toast.show();
 //        articleAdapter = new ArticleAdapter(articleList, topic + " " + settings, path, depth, displayMetrics.heightPixels, displayMetrics.widthPixels, showTopicSliders);
 //        rv.setAdapter(articleAdapter);
@@ -250,6 +251,14 @@ public class MainActivity extends AppCompatActivity {
         depth = getIntent().getStringExtra("Depth");
         if (depth == null)
             depth = "0";
+
+        SwipeRefreshLayout srl = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+        srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                updateArticles("");
+            }
+        });
 
         rv = (RecyclerView) findViewById(R.id.recycler);
         rv.setHasFixedSize(true);

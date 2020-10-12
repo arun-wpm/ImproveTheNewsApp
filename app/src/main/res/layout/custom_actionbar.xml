@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v7.widget.ActionMenuView
+    <androidx.appcompat.widget.ActionMenuView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

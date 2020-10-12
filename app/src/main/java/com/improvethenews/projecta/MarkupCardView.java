@@ -1,25 +1,15 @@
 package com.improvethenews.projecta;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
-
-import java.io.IOException;
 import java.net.URL;
 
 public class MarkupCardView extends FrameLayout {
