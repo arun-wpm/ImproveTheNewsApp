@@ -252,11 +252,16 @@ public class MainActivity extends AppCompatActivity {
         if (depth == null)
             depth = "0";
 
-        SwipeRefreshLayout srl = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+        final SwipeRefreshLayout srl = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                if (ArticleExtractor.isUpdating()) {
+                    srl.setRefreshing(false);
+                    return;
+                }
                 updateArticles("");
+                srl.setRefreshing(false);
             }
         });
 

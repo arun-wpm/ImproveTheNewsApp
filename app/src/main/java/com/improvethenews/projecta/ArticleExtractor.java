@@ -36,6 +36,7 @@ public class ArticleExtractor {
     ArrayList<Article> articleList;
     ArticleAdapter articleAdapter;
     Context context;
+    static AsyncTask<Void, Void, String> task;
 
     private class PullAsyncTask extends AsyncTask<Void, Void, String> {
 
@@ -150,7 +151,7 @@ public class ArticleExtractor {
         //2: article_card_small_right
         //3: article_card_half
         //4: article_card_footer
-        AsyncTask<Void, Void, String> task = new PullAsyncTask();
+        task = new PullAsyncTask();
         if (initial) {
             try {
                 String title = task.execute().get();
@@ -166,6 +167,14 @@ public class ArticleExtractor {
         else
             task.execute();
         return null;
+    }
+
+    public static boolean isUpdating() {
+        if (task == null)
+            return false;
+        if (task.getStatus() == AsyncTask.Status.FINISHED)
+            return false;
+        return true;
     }
 
 //    public ArrayList<Article> getArticleList() {
